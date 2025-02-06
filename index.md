@@ -31,7 +31,7 @@ title: SVS Control Module Firmware
 - Fixed factory reset bug that prevented the user programmable "input up/down" buttons from being erased during the factory reset procedure.
 - Fixed IR remote bug that caused the Retro Tink 4k remote's "Profile 1" button to trigger the "input up" function if the user programmed the Retro Tink 4K remote AUX buttons as "input up/down".
 - Optimized input detection routine, reducing flash memory usage by 13%.
-- Added initial support for peripheral communication system. Needed for future modules such as the RGB to Composite Conversion module.
+- Added initial support for peripheral communication system. Needed for future modules such as the RGB to Component Conversion module.
 
 
 <br/>
