@@ -33,4 +33,5 @@ title: SVS Control Module Firmware
 - Optimized input detection routine, reducing flash memory usage by 13%.
 - Added initial support for periferal communication system. Needed for future modules such as the RGB to Composite Conversion module.
 
+
 <br/>

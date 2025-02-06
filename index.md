@@ -7,7 +7,7 @@ layout: default
 
 | Device | Release |
 |-------|--------|---------|---------|
-| Scalable Video Switch Control Module | [Latest: 1.10<br/>(2025-02-06)](Control.md) |
+| Scalable Video Switch Control Module | [Latest: 1.10<br/>(2025-02-06)](ctrl.md) |
 
 <p style="margin:20px;"></p>
 
