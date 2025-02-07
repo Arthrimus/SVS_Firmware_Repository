@@ -25,7 +25,7 @@ title: SVS Control Module Firmware
 
 ## Version 1.10 (2025-02-06)
 
-### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/SVS%20Firmware%201.10%20Update.zip)
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/SVS%20Firmware%201.10%20Update.7z)
 
 ### Changelog:
 - Fixed factory reset bug that prevented the user programmable "input up/down" buttons from being erased during the factory reset procedure.
