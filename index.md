@@ -7,7 +7,7 @@ title: SVS Control Module Firmware
 
 <p style="margin:30px;"></p>
 
-<h3 align="center" style="margin: 0px;"[For BETA firmware versions click here](beta.md)</h3>
+[For BETA firmware versions click here](beta.md)
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
 
