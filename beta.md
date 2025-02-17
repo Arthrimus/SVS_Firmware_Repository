@@ -24,7 +24,7 @@ title: SVS Control Module Firmware
 <p style="margin:41px;"></p>
 
 
-## Version 1.11 Beta (2025-02-06)
+## Version 1.11 Beta (2025-02-17)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Beta/SVS%20Firmware%201.11%20Beta%20Update.7z)
 
