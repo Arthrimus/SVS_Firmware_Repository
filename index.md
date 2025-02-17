@@ -3,7 +3,7 @@ layout: default
 title: SVS Control Module Firmware
 ---
 
-<h1 align="center" style="margin-top: 0px;">SVS Control Module Firmware</h1>
+<h1 align="center" style="margin-top: 0px;">SVS Control Module STABLE Firmware</h1>
 
 <p style="margin:30px;"></p>
 
