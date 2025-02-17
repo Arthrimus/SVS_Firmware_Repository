@@ -29,7 +29,7 @@ title: SVS Control Module Firmware
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Beta/SVS%20Firmware%201.11%20Beta%20Update.7z)
 
 ### Changelog:
-- Added 500ms delay to new input detection. This helps eleminate phantom input detection due to occasional transient voltage spikes inside the switch.
+- Added 500ms delay to new input detection. This helps eleminate phantom input detection caused by occasional transient voltage spikes inside the switch.
 
 
 <br/>
