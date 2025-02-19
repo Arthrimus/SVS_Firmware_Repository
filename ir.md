@@ -33,4 +33,13 @@ The Retro Tink 5x Pro supports 10 profiles. They can be loaded using IR Remote c
 
 <p style="margin:41px;"></p>
 
+## OSSC Classic Profile IR Codes
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/IR%20Code%20Presets/OSSC%20Classic%20IR%20Codes.zip)
+
+### Info:
+The OSSC Classic supports 15 profiles (0-14). They can be loaded using IR Remote codes from the OSSC Remote. This file contains preconfigured IR codes for profile slots 0-14 arranged in that order for input 1-15 on the SVS. These profile IR codes can be rearranged as needed by changing the name of the folders to match the input number of the input you want to assign that profile slot to.
+
+<p style="margin:41px;"></p>
+
 <br/>
