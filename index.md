@@ -8,8 +8,11 @@ title: SVS Control Module Firmware
 <p style="margin:30px;"></p>
 
 [For BETA firmware versions click here](beta.md)
+
 <p style="margin:20px;"></p>
+
 [For IR Code SD Card Files click here](ir.md)
+
 <p style="margin:20px;"></p>
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
