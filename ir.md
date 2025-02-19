@@ -29,7 +29,7 @@ Remember to mount your IR blaster somewhere near your scaler so it can detect th
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/IR%20Code%20Presets/RT5X%20IR%20Codes.zip)
 
 ### Info:
-The Retro Tink 5x Pro supports 10 profiles. They can be loaded using IR Remote codes from the RT5X Pro Remote. This file contains preconfigured IR codes for profile slots 1-10 arranged in that order for input 1-10 on the SVS. These profile IR codes can be rearranged as needed by changing the name of the folders to match the input number of the input you want to assign that profile slot to.
+The Retro Tink 5x Pro supports 10 profiles. They can be loaded using IR Remote codes from the RT5X Premium Remote. This file contains preconfigured IR codes for profile slots 1-10 arranged in that order for input 1-10 on the SVS. These profile IR codes can be rearranged as needed by changing the name of the folders to match the input number of the input you want to assign that profile slot to.
 
 <p style="margin:41px;"></p>
 
