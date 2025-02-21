@@ -28,6 +28,19 @@ title: SVS Control Module Firmware
 5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 6. Once the firmware update is complete you can press any key to close the firmware update tool.
 
+
+<p style="margin:41px;"></p>
+
+
+## Version 1.12 (2025-02-21)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/SVS%20Firmware%201.12%20Update.7z)
+
+### Changelog:
+- Added 500ms delay to new input detection. This helps eleminate phantom input detection caused by occasional transient voltage spikes inside the switch
+- Added USB based serial control system. Inputs can now be manually selected by passing serial commands to the SVS. [See Here for details.](serial.md)
+- Refined the peripheral communication system.
+
 <p style="margin:41px;"></p>
 
 
