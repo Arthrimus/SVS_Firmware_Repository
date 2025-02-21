@@ -7,7 +7,7 @@ title: SVS Control Module Firmware
 
 <p style="margin:20px;"></p>
 
-#COM Port Settings
+##COM Port Settings
 
 | **Speed** | **Data Bits** | **Parity** | **Stop Bits** |
 |:---------:|:-------------:|:----------:|:-------------:|
@@ -15,7 +15,7 @@ title: SVS Control Module Firmware
 
 <p style="margin:20px;"></p>
 
-#Serial Commands
+##Serial Commands
 
 |      **Command**     |                                               **Function**                                               |
 |:--------------------:|:--------------------------------------------------------------------------------------------------------:|
