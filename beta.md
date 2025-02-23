@@ -28,7 +28,7 @@ title: SVS Control Module Beta Firmware
 Currently there is no automated script for updating on these platforms. You will need to use AVRDUDE for firmware updates. Below is the command that you need to use. Where `<serialpath>` is replaced with the correct serial port number for your SVS's USB serial chip, and where `<filepath>` is replaced with the full path to the hex file from the firmware update package. Make sure you use this exact command. If you set the programming options incorrectly then you can brick your control module. The only way to recover it is to send it back to me to have the factory base firmware and security keys reloaded.
 
 ##### AVRDUDE Update Command
-`-c urclock -p m328p -P <serialpath> -b 115200 -V -D -U flash:w:"<filepath>":i `
+`./avrdude -c urclock -p m328p -P <serialpath> -b 115200 -V -D -U flash:w:"<filepath>":i `
 
 <p style="margin:41px;"></p>
 
