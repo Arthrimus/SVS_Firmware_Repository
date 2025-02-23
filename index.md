@@ -9,7 +9,6 @@ title: SVS Control Module Firmware
 
 [For BETA firmware versions click here](beta.md)
 
-<p style="margin:20px;"></p>
 
 [For IR Code SD Card Files click here](ir.md)
 

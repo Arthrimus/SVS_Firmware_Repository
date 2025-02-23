@@ -1,6 +1,6 @@
 ---
 layout: default
-title: SVS Control Module Firmware
+title: SVS IR Codes
 ---
 
 <h1 align="center" style="margin-top: 0px;">SVS Control Module IR Code SD Files</h1>

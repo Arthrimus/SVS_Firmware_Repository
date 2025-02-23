@@ -1,6 +1,6 @@
 ---
 layout: default
-title: SVS Control Module Firmware
+title: SVS Control Module Beta Firmware
 ---
 
 <h1 align="center" style="margin-top: 0px;">SVS Control Module Firmware BETA Versions</h1>
