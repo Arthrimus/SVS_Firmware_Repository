@@ -7,18 +7,16 @@ title: SVS Control Module Firmware
 
 <p style="margin:30px;"></p>
 
-[For BETA firmware versions click here](beta.md)
+### [For BETA firmware versions click here](beta.md)
 
 
-[For IR Code SD Card Files click here](ir.md)
+### [For IR Code SD Card Files click here](ir.md)
 
 <p style="margin:20px;"></p>
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
 
 <p style="margin:20px;"></p>
-
-## Instructions️
 
 1. Download the firmware update and unzip it somewhere on your computer.
 2. Plug the SVS Control Module into your computer using a USB Type C Cable.
