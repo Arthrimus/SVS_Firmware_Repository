@@ -8,13 +8,11 @@ title: SVS Control Module Beta Firmware
 
 <p style="margin:30px;"></p>
 
-[For STABLE firmware versions click here](index.md)
+### [For STABLE firmware versions click here](index.md)
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
 
 <p style="margin:20px;"></p>
-
-## Instructions️
 
 1. Download the firmware update and unzip it somewhere on your computer.
 2. Plug the SVS Control Module into your computer using a USB Type C Cable.
