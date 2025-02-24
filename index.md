@@ -12,6 +12,8 @@ title: SVS Control Module Firmware
 
 ### [For IR Code SD Card Files click here](ir.md)
 
+### [For Serial Commands click here](serial.md)
+
 <p style="margin:20px;"></p>
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
