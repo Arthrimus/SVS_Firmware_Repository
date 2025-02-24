@@ -1,5 +1,7 @@
 #!/bin/bash
 
+clear
+
 echo "************************************************************************************************************************"
 echo "******************************************** SVS Firmware Update Tool V1.0 *********************************************"
 echo "********************************************      ARTHRIMUS LLC 2024       *********************************************"
@@ -20,14 +22,6 @@ if ! command -v avrdude &> /dev/null; then
   exit 1
 fi
 
-# Define OS-dependent binaries and parameters
-if [[ "$OSTYPE" == "darwin"* ]]; then
-  USB_SCAN_CMD="ioreg -p IOUSB -w0"
-else
-  USB_SCAN_CMD="lsusb"
-fi
-USB_GREP_CMD="grep -o 'USB-SERIAL CH340'"
-
 # Check avrdude version
 avrdude_version=$(avrdude 2>&1 | grep "avrdude version" | awk '{print $3}' | sed 's/,$//')
 if [[ "$avrdude_version" != "8.0" ]]; then
@@ -36,10 +30,15 @@ if [[ "$avrdude_version" != "8.0" ]]; then
 fi
 
 echo "Scanning for possible SVS Control Modules..."
-sleep 1
 
-com=$($USB_SCAN_CMD | grep -o 'USB-SERIAL CH340' | head -1)
-if [ -z "$com" ]; then
+# Scan for serial devices
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  USB_DEVICE=$(ioreg -r -c IOSerialBSDClient -l | grep 'IOCalloutDevice' | grep 'cu.usbserial' | head -n 1 | awk -F '"' '{print $4}')
+else
+  USB_DEVICE=$(ls /dev/ttyUSB* 2>/dev/null | head -n 1)
+fi
+
+if [ -z "$USB_DEVICE" ]; then
   echo "No SVS Control Module Detected. Please make sure your USB cable is plugged in and try again."
   exit 1
 fi
@@ -47,41 +46,25 @@ fi
 echo
 echo "Results:"
 echo "========================================================================================================================"
-$USB_SCAN_CMD | grep -o 'USB-SERIAL CH340'
+echo $USB_DEVICE
 echo "========================================================================================================================"
 echo
-sleep 1
-echo "Based on the scan of the available COM ports your SVS is probably connected to \"$com\""
+echo "Based on the scan of the available serial port devices your SVS is probably connected to \"$USB_DEVICE\""
 echo "Is this correct? (y/n)"
 read -r response
 if [[ "$response" != "y" ]]; then
-  echo "Please manually enter the port number of your SVS Control Module."
-  read -r num
-else
-  num=$($USB_SCAN_CMD | grep -o 'USB-SERIAL CH340' | head -1)
+  echo "Please manually enter the serial port (e.g., /dev/cu.usbserial-XXX or /dev/ttyUSBX) of your SVS Control Module:"
+  read -r USB_DEVICE
 fi
 
-if [[ -z "$num" ]]; then
-  echo "No valid COM port entered. Exiting."
-  exit 1
+# Check if the entered port exists in /dev/ and matches either /dev/cu.* (macOS) or /dev/ttyUSB* (Linux)
+if [[ ! -e "$USB_DEVICE" || ( "$USB_DEVICE" != /dev/cu.* && "$USB_DEVICE" != /dev/ttyUSB* ) ]]; then
+    echo "Error: Invalid serial port. Please check and try again."
+    exit 1
 fi
 
-echo "The COM port for your SVS is set to $num"
-echo "Is this correct? (y/n)"
-read -r response
-if [[ "$response" != "y" ]]; then
-  echo "Please manually enter the port number of your SVS Control Module."
-  read -r num
-fi
-
-echo "************************************************************************************************************************"
-echo "******************************************** SVS Firmware Update Tool V1.0 *********************************************"
-echo "********************************************      ARTHRIMUS LLC 2024       *********************************************"
-echo "************************************************************************************************************************"
-echo
 echo "Scanning for the newest SVS firmware file in the \"SVS Firmware Update\" folder..."
 echo
-sleep 1
 
 fn=$(ls -t SVS_FW_*.hex 2>/dev/null | head -1)
 if [ -z "$fn" ]; then
@@ -94,26 +77,27 @@ echo "Result:"
 echo "========================================================================================================================"
 echo "$fn"
 echo "========================================================================================================================"
-sleep 1
-echo "The newest firmware update file detected was \"$fn\". Is this the firmware file you wish to update to? (y/n)"
+echo "The newest firmware update file detected was \"$fn\"."
+echo "Is this the firmware file you wish to update to? (y/n)"
 read -r response
 if [[ "$response" != "y" ]]; then
   echo "Please manually enter the filename of your firmware update hex file."
   read -r fn
 fi
 
-if [[ "$fn" != *.hex ]]; then
-  echo "Invalid firmware file. Does not end in \".hex\""
+# Check if the file exists and ends with ".hex"
+if [[ ! -e "$fn" || "$fn" != *.hex ]]; then
+  echo "Invalid firmware file. File either does not exist or does not end in \".hex\""
   exit 1
 fi
 
 echo "The filename of your update is set to $fn"
-echo "Is this correct? (y/n)"
+echo "Are you sure you want to proceed with the firmware update? (y/n)"
 read -r response
 if [[ "$response" != "y" ]]; then
-  echo "Please manually enter the filename of your firmware update hex file."
-  read -r fn
+  echo "Exiting..."
+  exit 1
 fi
 
 echo "Executing firmware update..."
-avrdude -c urclock -p m328p -P "$num" -b 115200 -V -D -U flash:w:"$fn":i
+avrdude -c urclock -p m328p -P "$USB_DEVICE" -b 115200 -V -D -U flash:w:"$fn":i
