@@ -57,7 +57,7 @@ if [[ ! -e "$USB_DEVICE" || ( "$USB_DEVICE" != /dev/cu.* && "$USB_DEVICE" != /de
 fi
 
 # Get the directory where the script is located
-SCRIPT_DIR=$(dirname "$(realpath "$0")")
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
 
 echo "Scanning for the newest SVS firmware file in the \"SVS Firmware Update\" $SCRIPT_DIR folder..."
 echo
