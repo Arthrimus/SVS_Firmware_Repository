@@ -31,8 +31,8 @@ jobs:
           cp "SVS Control Module Firmwares/Firmware/SVS_FW_${VERSION}.hex" release/
           cp "SVS Control Module Firmwares/readme.txt" release/
           cp "SVS Control Module Firmwares/releasenotes.txt" release/
-          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool*.sh" release/
-          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool*.bat" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Windows.bat" release/
           cp -r "SVS Control Module Firmwares/Scripts/tools" release/
           cd release/ && zip -r SVS_Firmware_${VERSION}.zip . && cd ..
 
