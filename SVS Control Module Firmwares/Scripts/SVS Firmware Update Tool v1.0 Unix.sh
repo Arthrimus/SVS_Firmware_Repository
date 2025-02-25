@@ -102,6 +102,3 @@ fi
 
 echo "Executing firmware update..."
 avrdude -c urclock -p m328p -P "$USB_DEVICE" -b 115200 -V -D -U flash:w:"$fn":i
-
-# escaped_fn=$(printf '%q' "$fn")
-# avrdude -c urclock -p m328p -P "$USB_DEVICE" -b 115200 -V -D -U flash:w:"$escaped_fn":i
