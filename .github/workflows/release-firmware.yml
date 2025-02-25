@@ -1,0 +1,53 @@
+name: Release Firmware Update
+
+on:
+  push:
+    branches:
+      - workflow_test
+    paths:
+      - 'SVS Control Module Firmwares/**'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract release information
+        id: release_info
+        run: |
+          VERSION=$(grep 'Version:' "SVS Control Module Firmwares/releasenotes.txt" | awk '{print $2}')
+          DESC=$(awk '/Description:/,/Files:/' "SVS Control Module Firmwares/releasenotes.txt" | sed '1d;$d')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "DESC<<EOF" >> $GITHUB_ENV
+          echo "$DESC" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Package firmware release
+        run: |
+          mkdir -p release/mac release/windows
+          cp "Firmware/SVS_FW_${VERSION}.hex" release/mac
+          cp "Firmware/SVS_FW_${VERSION}.hex" release/windows
+          cp "SVS Control Module Firmwares/readme.txt" release/mac
+          cp "SVS Control Module Firmwares/readme.txt" release/windows
+          cp "SVS Control Module Firmwares/releasenotes.txt" release/mac
+          cp "SVS Control Module Firmwares/releasenotes.txt" release/windows
+          cp "Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/mac/
+          cp "Scripts/SVS Firmware Update Tool v1.0 Windows.bat" release/windows/
+          cp -r Scripts/Tools release/windows/
+          cd release/mac && zip -r ../SVS_Firmware_${VERSION}_Mac.zip . && cd ../..
+          cd release/windows && zip -r ../SVS_Firmware_${VERSION}_Windows.zip . && cd ../..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: SVS Firmware v${{ env.VERSION }}
+          body: |
+            Release Notes:
+            ${{ env.DESC }}
+          files: |
+            release/SVS_Firmware_${{ env.VERSION }}_Mac.zip
+            release/SVS_Firmware_${{ env.VERSION }}_Windows.zip
+

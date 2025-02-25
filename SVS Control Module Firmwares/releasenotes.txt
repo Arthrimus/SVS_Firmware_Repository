@@ -1,0 +1,12 @@
+Version: 1.12
+Date: 2025-02-24
+Description:
+- Fixed issue with module initialization
+- Improved stability during power cycles
+- Optimized boot sequence
+
+Files:
+- Firmware: SVS_FW_1.12.hex
+- Windows Tool: SVS Firmware Update Tool v1.0 Windows.bat
+- Mac Tool: SVS Firmware Update Tool v1.0 Unix.sh
+- Additional: Tools folder, Readme.txt
