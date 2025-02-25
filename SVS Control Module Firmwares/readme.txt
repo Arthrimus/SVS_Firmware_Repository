@@ -9,9 +9,25 @@ The SVS Firmware Update Tool will search for the correct COM port for updating y
 The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 Once the firmware update is complete you can press any key to close the firmware update tool.
 
-** Linux and Mac Users
+** Linux Users
 
-Currently there is no automated script for updating on these platforms. You will need to use AVRDUDE for firmware updates. Below is the command that you need to use. Where <serialpath> is replaced with the correct serial port path for your SVS’s USB serial chip, and where <filepath> is replaced with the full path to the hex file from the firmware update package. Make sure you use this exact command. If you set the programming options incorrectly then you can brick your control module. The only way to recover it is to send it back to me to have the factory base firmware and security keys reloaded.
+Install AVRDUDE using your package manager:
 
-AVRDUDE Update Command
-./avrdude -c urclock -p m328p -P <serialpath> -b 115200 -V -D -U flash:w:"<filepath>":i
+Open a terminal and run the following command to install AVRDUDE:
+sudo apt-get install avrdude
+
+For your specific Linux distribution, you may need to use a different package manager or command to install AVRDUDE.
+The example above is for Ubuntu and Debian based distributions.
+
+Run in the terminal:
+bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
+
+** Mac Users
+
+Follow the instruction at https://brew.sh to install Brew.
+
+Install AVRDUDE using Brew:
+brew install avrdude
+
+Run in the terminal:
+bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
