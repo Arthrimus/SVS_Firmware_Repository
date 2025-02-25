@@ -22,13 +22,6 @@ if ! command -v avrdude &> /dev/null; then
   exit 1
 fi
 
-# Check avrdude version
-avrdude_version=$(avrdude 2>&1 | grep "avrdude version" | awk '{print $3}' | sed 's/,$//')
-if [[ "$avrdude_version" != "8.0" ]]; then
-  echo "Error: avrdude version must be 8.0."
-  exit 1
-fi
-
 echo "Scanning for possible SVS Control Modules..."
 
 # Scan for serial devices
