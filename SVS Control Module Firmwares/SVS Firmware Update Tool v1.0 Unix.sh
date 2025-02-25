@@ -63,12 +63,17 @@ if [[ ! -e "$USB_DEVICE" || ( "$USB_DEVICE" != /dev/cu.* && "$USB_DEVICE" != /de
     exit 1
 fi
 
-echo "Scanning for the newest SVS firmware file in the \"SVS Firmware Update\" folder..."
+# Get the directory where the script is located
+SCRIPT_DIR=$(dirname "$(realpath "$0")")
+
+echo "Scanning for the newest SVS firmware file in the \"SVS Firmware Update\" $SCRIPT_DIR folder..."
 echo
 
-fn=$(ls -t SVS_FW_*.hex 2>/dev/null | head -1)
+# Search for .hex files in the script directory
+fn=$(ls -t "$SCRIPT_DIR"/SVS_FW_*.hex 2>/dev/null | head -1)
 if [ -z "$fn" ]; then
-  echo "No SVS firmware file could be found. Please download a new firmware update file from arthrimus.com and place it in the \"SVS Firmware Update\" folder then try again."
+  echo "No SVS firmware file could be found in the $SCRIPT_DIR directory."
+  echo "Please download a new firmware update file from arthrimus.com, place it in the $SCRIPT_DIR directory and try again."
   exit 1
 fi
 
@@ -82,7 +87,10 @@ echo "Is this the firmware file you wish to update to? (y/n)"
 read -r response
 if [[ "$response" != "y" ]]; then
   echo "Please manually enter the filename of your firmware update hex file."
+  echo "The file must be located in $SCRIPT_DIR directory."
   read -r fn
+  # Prepend the script directory to the manually entered filename
+  fn="$SCRIPT_DIR/$fn"
 fi
 
 # Check if the file exists and ends with ".hex"
@@ -101,3 +109,6 @@ fi
 
 echo "Executing firmware update..."
 avrdude -c urclock -p m328p -P "$USB_DEVICE" -b 115200 -V -D -U flash:w:"$fn":i
+
+# escaped_fn=$(printf '%q' "$fn")
+# avrdude -c urclock -p m328p -P "$USB_DEVICE" -b 115200 -V -D -U flash:w:"$escaped_fn":i
