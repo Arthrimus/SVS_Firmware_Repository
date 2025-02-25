@@ -1,0 +1,49 @@
+name: Release Firmware Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'SVS Control Module Firmwares/Firmware/**'
+  workflow_dispatch:
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract release information
+        id: release_info
+        run: |
+          VERSION=$(grep 'Version:' "SVS Control Module Firmwares/releasenotes.txt" | head -n 1 | awk '{print $2}')
+          DESC=$(awk '/Version:/{if (NR!=1) exit} /Description:/,/^$/' "SVS Control Module Firmwares/releasenotes.txt" | sed '1d;$d')
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+          echo "DESC<<EOF" >> $GITHUB_ENV
+          echo "$DESC" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      - name: Package firmware release
+        run: |
+          mkdir -p release
+          cp "SVS Control Module Firmwares/Firmware/SVS_FW_${VERSION}.hex" release/
+          cp "SVS Control Module Firmwares/readme.txt" release/
+          cp "SVS Control Module Firmwares/releasenotes.txt" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool*.sh" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool*.bat" release/
+          cp -r "SVS Control Module Firmwares/Scripts/tools" release/
+          cd release/ && zip -r SVS_Firmware_${VERSION}.zip . && cd ..
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ env.VERSION }}
+          name: SVS Firmware v${{ env.VERSION }}
+          body: |
+            Release Notes:
+            ${{ env.DESC }}
+          files: |
+            release/SVS_Firmware_${{ env.VERSION }}.zip
+          draft: true
