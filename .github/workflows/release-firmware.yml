@@ -26,18 +26,14 @@ jobs:
 
       - name: Package firmware release
         run: |
-          mkdir -p release/mac release/windows
-          cp "SVS Control Module Firmwares/Firmware/SVS_FW_${VERSION}.hex" release/mac
-          cp "SVS Control Module Firmwares/Firmware/SVS_FW_${VERSION}.hex" release/windows
-          cp "SVS Control Module Firmwares/readme.txt" release/mac
-          cp "SVS Control Module Firmwares/readme.txt" release/windows
-          cp "SVS Control Module Firmwares/releasenotes.txt" release/mac
-          cp "SVS Control Module Firmwares/releasenotes.txt" release/windows
-          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/mac/
-          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Windows.bat" release/windows/
-          cp -r "SVS Control Module Firmwares/Scripts/tools" release/windows/
-          cd release/mac && zip -r ../SVS_Firmware_${VERSION}_Mac.zip . && cd ../..
-          cd release/windows && zip -r ../SVS_Firmware_${VERSION}_Windows.zip . && cd ../..
+          mkdir -p release
+          cp "SVS Control Module Firmwares/Firmware/SVS_FW_${VERSION}.hex" release/
+          cp "SVS Control Module Firmwares/readme.txt" release/
+          cp "SVS Control Module Firmwares/releasenotes.txt" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Windows.bat" release/
+          cp -r "SVS Control Module Firmwares/Scripts/tools" release/
+          cd release/ && zip -r ../SVS_Firmware_${VERSION}.zip . && cd ..
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -50,4 +46,4 @@ jobs:
           files: |
             release/SVS_Firmware_${{ env.VERSION }}_Mac.zip
             release/SVS_Firmware_${{ env.VERSION }}_Windows.zip
-
+          draft: true
