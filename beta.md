@@ -4,11 +4,14 @@ title: SVS Control Module Beta Firmware
 ---
 
 <h1 align="center" style="margin-top: 0px;">SVS Control Module Firmware BETA Versions</h1>
-<h3 align="center" style="margin-top: 0px;">Warning! These are BETA firmwares. You may experience unexpected results. You can revert to STABLE firmware versions at any time.</h3>
 
-<p style="margin:30px;"></p>
+##
+
+### Warning! These are BETA firmwares. You may experience unexpected results. You can revert to STABLE firmware versions at any time.</h3>
 
 ### [For STABLE firmware versions click here](index.md)
+
+##
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
 
@@ -23,19 +26,40 @@ title: SVS Control Module Beta Firmware
 5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 6. Once the firmware update is complete you can press any key to close the firmware update tool.
 
-### Linux and Mac Users
+### Linux Users
 
-Currently there is no automated script for updating on these platforms. You will need to use [AVRDUDE](https://github.com/avrdudes/avrdude) for firmware updates. Below is the command that you need to use. Where `<serialpath>` is replaced with the correct serial port path for your SVS's USB serial chip, and where `<filepath>` is replaced with the full path to the hex file from the firmware update package. Make sure you use this exact command. If you set the programming options incorrectly then you can brick your control module. The only way to recover it is to send it back to me to have the factory base firmware and security keys reloaded.
+1. Install AVRDUDE using your package manager:
 
-##### AVRDUDE Update Command
-`./avrdude -c urclock -p m328p -P <serialpath> -b 115200 -V -D -U flash:w:"<filepath>":i `
+Open a terminal and run the following command to install AVRDUDE:
+sudo apt-get install avrdude
+
+For your specific Linux distribution, you may need to use a different package manager or command to install AVRDUDE.
+The example above is for Ubuntu and Debian based distributions.
+
+2. Run in the terminal:
+bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
+
+### Mac Users
+
+1. Follow the instruction at https://brew.sh to install Brew.
+
+2. Install AVRDUDE using Brew:
+brew install avrdude
+
+3. Run in the terminal:
+bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
 
 <p style="margin:41px;"></p>
 
+##
+
+<h2 align="center" style="margin-top: 0px;">Downloads</h2>
+
+<p style="margin:50px;"></p>
 
 ## Version 1.11 Beta (2025-02-17)
 
-### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Beta/SVS%20Firmware%201.11%20Beta%20Update.7z)
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.11_BETA/SVS_Firmware_1.11_BETA.zip)
 
 ### Changelog:
 - Added 500ms delay to new input detection. This helps eleminate phantom input detection caused by occasional transient voltage spikes inside the switch.
