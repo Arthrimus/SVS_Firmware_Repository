@@ -9,7 +9,7 @@ title: SVS Serial Commands
 
 ## Description
 
-The SVS supports serial commands to control various functions of the switch remotely. Currently this is possible through USB using the built in serial chip in the SVS Control Module. You will need to connect the SVS to a USB host such as a computer or Raspberry Pi and open the COM port with the settings listed below. The valid serial commands are listed in the table below. More commands will be added in the future as Control Module functionality expands.
+Starting with firmware version 1.12 the SVS supports serial commands to control various functions of the switch remotely. Currently this is possible through USB using the built in serial chip in the SVS Control Module. You will need to connect the SVS to a USB host such as a computer or Raspberry Pi and open the COM port with the settings listed below. The valid serial commands are listed in the table below. More commands will be added in the future as Control Module functionality expands.
 
 <p style="margin:20px;"></p>
 
@@ -22,7 +22,7 @@ The SVS supports serial commands to control various functions of the switch remo
 
 <p style="margin:20px;"></p>
 
-## Serial Commands
+## Serial Commands (Firmware Version 1.12)
 
 |      **Command**     |                                               **Function**                                               |
 |:--------------------:|:---------------------------------------------------------------------------------------------------------|
