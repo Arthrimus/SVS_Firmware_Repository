@@ -5,13 +5,12 @@ title: SVS Control Module Beta Firmware
 
 <h1 align="center" style="margin-top: 0px;">SVS Control Module Firmware BETA Versions</h1>
 
-##
 
 ### Warning! These are BETA firmwares. You may experience unexpected results. You can revert to STABLE firmware versions at any time.</h3>
 
 ### [For STABLE firmware versions click here](index.md)
 
-##
+
 
 <h2 align="center" style="margin-top: 0px;">Update Instructions</h2>
 
@@ -51,7 +50,6 @@ bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
 
 <p style="margin:41px;"></p>
 
-##
 
 <h2 align="center" style="margin-top: 0px;">Downloads</h2>
 
