@@ -6,7 +6,7 @@ title: SVS Control Module Beta Firmware
 <h1 align="center" style="margin-top: 0px;">SVS Control Module Firmware BETA Versions</h1>
 
 
-### Warning! These are BETA firmwares. You may experience unexpected results. You can revert to STABLE firmware versions at any time.</h3>
+### Warning! These are BETA firmwares. You may experience unexpected results. You can revert to STABLE firmware versions at any time.
 
 ### [For STABLE firmware versions click here](index.md)
 
