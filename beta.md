@@ -25,7 +25,13 @@ title: SVS Control Module Beta Firmware
 5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 6. Once the firmware update is complete you can press any key to close the firmware update tool.
 
-### Linux Users
+<p style="margin:50px;"></p>
+
+### Unix Users
+
+ Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus) firmware update packages now include an automated firmware update script for Unix based systems such as Linux and MacOS as well.
+
+#### Linux Users
 
 * Install AVRDUDE using your package manager:
 
@@ -38,19 +44,21 @@ The example above is for Ubuntu and Debian based distributions.
 * Run in the terminal:
 `bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh`
 
-### Mac Users
+#### Mac Users
 
 1. Follow the instruction at https://brew.sh to install Brew.
 
 2. Install AVRDUDE using Brew:
 `brew install avrdude`
 
-3. Run in the terminal: `bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh`
+3. Run in the terminal:
+`bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh`
 
-<p style="margin:41px;"></p>
+
+<p style="margin:100px;"></p>
 
 
-<h2 align="center" style="margin-top: 0px;">Downloads</h2>
+<h2 align="center" style="margin-top: 0px;">Firmware Update Downloads</h2>
 
 <p style="margin:50px;"></p>
 
