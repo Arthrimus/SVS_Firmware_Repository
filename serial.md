@@ -26,10 +26,12 @@ The SVS supports serial commands to control various functions of the switch remo
 
 |      **Command**     |                                               **Function**                                               |
 |:--------------------:|:---------------------------------------------------------------------------------------------------------|
-|     SVS_Input_Up     | Cycles up by one input                                                                                   |
-|    SVS_Input_Down    | Cycles down by one input                                                                                 |
-| SVS_Change_Input_"#" | Changes the input to a specific number. _Example: "SVS_Change_Input_3" switches to the 3rd input module_ |
+|     `SVS_Input_Up`     | Cycles up by one input                                                                                   |
+|    `SVS_Input_Down`    | Cycles down by one input                                                                                 |
+| `SVS_Change_Input_"#"` | Changes the input to a specific number. _Example: `SVS_Change_Input_3` switches to the 3rd input module*_ |
 
 <p style="margin:20px;"></p>
+
+_*Input numbers higher than the total number of available input modules will default to the highest avalable input number._
 
 <br/>
