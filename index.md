@@ -32,7 +32,7 @@ title: SVS Control Module Firmware
 
 ### Linux Users
 
-1. Install AVRDUDE using your package manager:
+* Install AVRDUDE using your package manager:
 
 Open a terminal and run the following command to install AVRDUDE:
 sudo apt-get install avrdude
@@ -40,7 +40,7 @@ sudo apt-get install avrdude
 For your specific Linux distribution, you may need to use a different package manager or command to install AVRDUDE.
 The example above is for Ubuntu and Debian based distributions.
 
-2. Run in the terminal:
+* Run in the terminal:
 bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
 
 ### Mac Users
