@@ -34,7 +34,7 @@ title: SVS Control Module Firmware
 
 ### Unix Users
 
- Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported Unix based systems such as Linux and MacOS.
+ Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Unix based systems such as Linux and MacOS.
 
 #### Linux Users
 
