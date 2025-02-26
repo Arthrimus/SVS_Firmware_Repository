@@ -32,6 +32,6 @@ The SVS supports serial commands to control various functions of the switch remo
 
 <p style="margin:20px;"></p>
 
-_*Input numbers higher than the total number of available input modules will default to the highest avalable input number._
+_*Input numbers higher than the total number of available input modules will default to the highest available input number._
 
 <br/>
