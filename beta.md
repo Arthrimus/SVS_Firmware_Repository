@@ -29,7 +29,7 @@ title: SVS Control Module Beta Firmware
 
 ### Unix Users
 
- Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus) firmware update packages now include an automated firmware update script for Unix based systems such as Linux and MacOS as well.
+ Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Unix based systems such as Linux and MacOS.
 
 #### Linux Users
 
@@ -38,8 +38,8 @@ title: SVS Control Module Beta Firmware
 Open a terminal and run the following command to install AVRDUDE:
 `sudo apt-get install avrdude`
 
-For your specific Linux distribution, you may need to use a different package manager or command to install AVRDUDE.
-The example above is for Ubuntu and Debian based distributions.
+_For your specific Linux distribution, you may need to use a different package manager or command to install AVRDUDE.
+The example above is for Ubuntu and Debian based distributions._
 
 * Run in the terminal:
 `bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh`
