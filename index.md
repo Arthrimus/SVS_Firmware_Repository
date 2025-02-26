@@ -7,7 +7,6 @@ title: SVS Control Module Firmware
 
 <p style="margin:30px;"></p>
 
-##
 
 ### [For BETA firmware versions click here](beta.md)
 
@@ -15,7 +14,6 @@ title: SVS Control Module Firmware
 
 ### [For Serial Commands click here](serial.md)
 
-##
 
 <p style="margin:20px;"></p>
 
@@ -58,7 +56,7 @@ bash SVS\ Firmware\ Update\ Tool\ v1.0\ Unix.sh
 
 <p style="margin:41px;"></p>
 
-##
+
 
 <h2 align="center" style="margin-top: 0px;">Downloads</h2>
 
