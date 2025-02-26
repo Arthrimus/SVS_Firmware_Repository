@@ -51,7 +51,7 @@ The example above is for Ubuntu and Debian based distributions._
 
 #### Mac Users
 
-1. Follow the instruction at https://brew.sh to install Brew.
+1. Follow the instruction at [https://brew.sh](https://brew.sh) to install Brew.
 
 2. Install AVRDUDE using Brew:
 `brew install avrdude`
