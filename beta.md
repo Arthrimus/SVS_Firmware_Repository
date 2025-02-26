@@ -20,7 +20,7 @@ title: SVS Control Module Beta Firmware
 
 1. Download the firmware update and unzip it somewhere on your computer.
 2. Plug the SVS Control Module into your computer using a USB Type C Cable.
-3. Run the batch file labeled "SVS Firmware Update Tool v1.0.bat"
+3. Run the batch file labeled "SVS Firmware Update Tool v1.0 Windows.bat"
 4. The SVS Firmware Update Tool will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you will need to manually select the correct COM port for your SVS.
 5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 6. Once the firmware update is complete you can press any key to close the firmware update tool.
