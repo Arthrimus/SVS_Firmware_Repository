@@ -73,7 +73,7 @@ The example above is for Ubuntu and Debian based distributions._
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.12/SVS_Firmware_1.12.zip)
 
 ### Changelog:
-- Added 500ms delay to new input detection. This helps eleminate phantom input detection caused by occasional transient voltage spikes inside the switch
+- Added 500ms delay to new input detection. This helps eliminate phantom input detection caused by occasional transient voltage spikes inside the switch
 - Added USB based serial control system. Inputs can now be manually selected by passing serial commands to the SVS. [See Here for details.](serial.md)
 - Refined the peripheral communication system.
 
