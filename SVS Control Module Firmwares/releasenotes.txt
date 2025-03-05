@@ -1,3 +1,10 @@
+Version: 1.13
+Date: 2025-03-05
+Description:
+- Streamlined SD Card reading process for IR codes. Allows IR code sequences to be transmitted at a significantly faster interval (1.396 seconds faster per serial code slot)
+- Input #0 _"no input selected"_ can now be cycled to using the control module pushbutton as well as IR and Serial Up/Down commands. Previously input cycling would roll over to input 1, skipping input 0.
+- Added more serial commands to the existing serial control system.
+
 Version: 1.12
 Date: 2025-02-21
 Description:
