@@ -30,6 +30,8 @@ title: SVS Control Module Firmware
 5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 6. Once the firmware update is complete you can press any key to close the firmware update tool.
 
+_If you are on Windows 11 and the firmware update tool does not detect your SVS you may need to install "wmic" by opening your start menu, searching for "optional features" select "View Features" search for "wmic" and install it._
+
 <p style="margin:50px;"></p>
 
 ### Unix Users
@@ -67,6 +69,18 @@ The example above is for Ubuntu and Debian based distributions._
 <h2 align="center" style="margin-top: 0px;">Firmware Update Downloads</h2>
 
 <p style="margin:50px;"></p>
+
+## Version 1.13 (2025-03-5)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.13/SVS_Firmware_1.13.zip)
+
+### Changelog:
+- Streamlined SD Card reading process for IR codes. Allows IR code sequences to be transmitted at a significantly faster interval (1.396 seconds faster per serial code slot)
+- Input #0 _"no input selected"_ can now be cycled to using the control module pushbutton as well as IR and Serial Up/Down commands. Previously input cycling would roll over to input 1, skipping input 0.
+- Added more serial commands to the existing serial control system. [See Here for details.](serial.md)
+- Added wmic deprecation warning and instructions to the firmware update script for Windows 11 users.
+
+<p style="margin:41px;"></p>
 
 ## Version 1.12 (2025-02-21)
 
