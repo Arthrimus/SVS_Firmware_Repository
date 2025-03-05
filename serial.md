@@ -22,7 +22,7 @@ Starting with firmware version 1.12 the SVS supports serial commands to control 
 
 <p style="margin:20px;"></p>
 
-## Serial Commands (Firmware Version 1.13)
+## Serial Commands (Minimum Firmware Version 1.12)
 
 |      **Command**     |                                               **Function**                                               |
 |:--------------------:|:---------------------------------------------------------------------------------------------------------|
