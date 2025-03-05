@@ -70,7 +70,7 @@ The example above is for Ubuntu and Debian based distributions._
 
 <p style="margin:50px;"></p>
 
-## Version 1.13 (2025-03-5)
+## Version 1.13 (2025-03-05)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.13/SVS_Firmware_1.13.zip)
 
