@@ -66,8 +66,16 @@ echo ********************************************      ARTHRIMUS LLC 2024       
 echo ************************************************************************************************************************
 echo.
 echo No SVS Control Module Detected. Please make sure your USB cable is plugged in and try again.
-pause
-exit
+echo.
+echo If you are running this script on Windows 11 and you know for sure that your SVS is connected you may not have the 
+echo windows feature "wmic" installed. This feature was recently deprecated from Windows 11. To install wmic you can open the
+echo start menu and search for "Optional features" then select "View Features" and search for "wmic" and install it. Once you
+echo have completed these steps you can run the firmware update script again.
+echo.
+echo Alternatively if you already know which COM port number your SVS is connected to you can manually type the COM # here 
+echo and continue the update without installing wmic.
+set /p num= COM#:
+goto main
 
 :MIDDLE
 cls
