@@ -62,6 +62,22 @@ The example above is for Ubuntu and Debian based distributions._
 
 <p style="margin:50px;"></p>
 
+## Version 1.14 Beta (2025-03-09)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.14_BETA/SVS_Firmware_1.14_BETA.7z)
+
+### Changelog:
+- Added an interrupt to the control module pushbutton to cancel SD card reading and IR code transmission to speed up manual input cycling during IR code transmission sequence.
+- Added a quasi-interrupt like function to the IR receiver to cancel IR code transmission, but not SD reading, to speed up manual input cycling during IR code transmission sequence. (true interrupt not feasible at this time)
+- Added user defined IR code transmission delay time for SD card IR code files. (Was present in older firmware, but was temporarily removed (accidentally) in 1.13 as part of the SD card loading system rewrite)
+- Added Power on/off option using the SVS IR remote and serial commands. _Use the Power Button on the SVS remote_
+- Added "attract mode" option to automatically cycle through inputs at timed intervals. (Just for fun!)  _Use the "Mute" button on the IR remote to toggle this on or off._
+- Optimized serial parser to significantly reduce memory usage. (We're running out of RAM!)
+- Updated peripheral communication system's command set to reduce memory usage. (No really, we're running out of RAM.)
+- Converted all 2 state variables from integer (we used to have it so easy) to Boolean to reduce memory usage.(We're pretty desperate for RAM at this point.)
+
+<p style="margin:50px;"></p>
+
 ## Version 1.11 Beta (2025-02-17)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.11_BETA/SVS_Firmware_1.11_BETA.zip)
