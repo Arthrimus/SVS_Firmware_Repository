@@ -45,5 +45,5 @@ jobs:
             Release Notes:
             ${{ env.DESC }}
           files: |
-            release/SVS_Firmware_${{ env.VERSION }}.zip
+            release/SVS_Firmware_${{ env.VERSION }}.7z
           draft: true
