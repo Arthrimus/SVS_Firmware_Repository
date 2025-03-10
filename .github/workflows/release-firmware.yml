@@ -25,6 +25,9 @@ jobs:
           echo "$DESC" >> $GITHUB_ENV
           echo "EOF" >> $GITHUB_ENV
 
+      - name: Install p7zip
+        run: sudo apt-get install -y p7zip-full
+
       - name: Package firmware release
         run: |
           mkdir -p release
@@ -34,7 +37,7 @@ jobs:
           cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/
           cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Windows.bat" release/
           cp -r "SVS Control Module Firmwares/Scripts/tools" release/
-          cd release/ && zip -r SVS_Firmware_${VERSION}.zip . && cd ..
+          cd release/ && 7z a SVS_Firmware_${VERSION}.7z . && cd ..
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -45,5 +48,5 @@ jobs:
             Release Notes:
             ${{ env.DESC }}
           files: |
-            release/SVS_Firmware_${{ env.VERSION }}.zip
+            release/SVS_Firmware_${{ env.VERSION }}.7z
           draft: true
