@@ -1,15 +1,3 @@
-Version: 1.14_BETA
-Date: 2025-03-09
-Description:
-- Added an interrupt to the control module pushbutton to cancel SD card reading and IR code transmission to speed up manual input cycling during IR code transmission sequence.
-- Added a quasi-interrupt like function to the IR receiver to cancel IR code transmission, but not SD reading, to speed up manual input cycling during IR code transmission sequence. (true interrupt not feasible at this time)
-- Added user defined IR code transmission delay time for SD card IR code files. (Was present in older firmware, but was temporarily removed (accidentally) in 1.13 as part of the SD card loading system rewrite)
-- Added Power on/off option using the SVS IR remote and serial commands.
-- Added "attract mode" option to automatically cycle through inputs at timed intervals. (Just for fun!)
-- Optimized serial parser to significantly reduce dynamic memory usage. (We're running out of RAM!)
-- Updated peripheral communication system's command set to reduce memory usage. (No really, we're running out of RAM!)
-- Converted all 2 state variables from integer (we used to have it so easy) to Boolean to reduce memory usage.(We're pretty desperate for RAM at this point.)
-
 Version: 1.13
 Date: 2025-03-05
 Description:
