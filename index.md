@@ -75,7 +75,7 @@ The example above is for Ubuntu and Debian based distributions._
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.14/SVS_Firmware_1.14.7z)
 
 ### Changelog:
-- Added seek mode. Allows you to use the left/right buttons on the SVS remote to jump to the next/previous active input instead of manually cycling through all inputs one at a time. The up/down buttons still allow this.
+- Added seek mode. Allows you to use the left/right buttons on the SVS remote to jump to the next/previous active input instead of manually cycling through all inputs one at a time. The up/down buttons still allow cycling one by one as with previous firmware versions.
 - Added the ability to load a config file from the SD card to change settings such as whether the pushbutton is set to cycle inputs or seek active inputs, change the "Attract Mode" interval, and set the baudrate for the future RS232 module. [Download Config File Here](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SD%20Card%20Files/SD%20Card%20Config%20File.zip)
 - Added an interrupt to the control module pushbutton to cancel SD card reading and IR code transmission to speed up manual input cycling during IR code transmission sequence.
 - Added a quasi-interrupt like function to the IR receiver to cancel IR code transmission, but not SD reading, to speed up manual input cycling during IR code transmission sequence. (true interrupt not feasible at this time)
