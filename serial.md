@@ -47,6 +47,8 @@ Starting with firmware version 1.12 the SVS supports serial commands to control 
 | `SVS_Power_OFF` | Place SVS Control Module into standby mode |
 | `SVS_Attract_ON` | Turns on "Attract Mode" |
 | `SVS_Attract_OFF` | Turns off "Attract Mode" |
+| `SVS_Input_Seek_Up` | Seeks for the next active input number |
+| `SVS_Input_Seek_Down` | Seeks for the previous active input number |
 
 <p style="margin:20px;"></p>
 

@@ -1,3 +1,0 @@
-Pushbutton Mode = cycle
-attractmode delay(milliseconds) = 15000
-Serial Baudrate = 9600
