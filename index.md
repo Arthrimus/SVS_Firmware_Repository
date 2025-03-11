@@ -70,7 +70,25 @@ The example above is for Ubuntu and Debian based distributions._
 
 <p style="margin:50px;"></p>
 
-## Version 1.13 (2025-03-05)
+## Version 1.14 (2025-03-11)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.14/SVS_Firmware_1.14.7z)
+
+### Changelog:
+- Added seek mode. Allows you to use the left/right buttons on the SVS remote to jump to the next/previous active input instead of manually cycling through all inputs one at a time. The up/down buttons still allow this.
+- Added the ability to load a config file from the SD card to change settings such as whether the pushbutton is set to cycle inputs or seek active inputs, change the "Attract Mode" interval, and set the baudrate for the future RS232 module. [Download Config File Here](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SD%20Card%20Files/SD%20Card%20Config%20File.zip)
+- Added an interrupt to the control module pushbutton to cancel SD card reading and IR code transmission to speed up manual input cycling during IR code transmission sequence.
+- Added a quasi-interrupt like function to the IR receiver to cancel IR code transmission, but not SD reading, to speed up manual input cycling during IR code transmission sequence. (true interrupt not feasible at this time)
+- Added user defined IR code transmission delay time for SD card IR code files. (Was present in older firmware, but was temporarily removed (accidentally) in 1.13 as part of the SD card loading system rewrite)
+- Added Power on/off option using the SVS IR remote and serial commands.
+- Added "attract mode" option to automatically cycle through inputs at timed intervals. Improved from 1.14 BETA version, now uses seek function to only switch between active inputs.
+- Optimized serial parser to significantly reduce dynamic memory usage.
+- Updated peripheral communication system's command set to reduce memory usage.
+- Converted all 2 state variables from integer (we used to have it so easy) to Boolean to reduce memory usage.
+
+<p style="margin:50px;"></p>
+
+## Version 1.13 (2025-03-5)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.13/SVS_Firmware_1.13.zip)
 
