@@ -9,6 +9,8 @@ The SVS Firmware Update Tool will search for the correct COM port for updating y
 The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
 Once the firmware update is complete you can press any key to close the firmware update tool.
 
+If you are on Windows 11 and the firmware update tool does not detect your SVS you may need to install “wmic” by opening your start menu, searching for “optional features” select “View Features” search for “wmic” and install it.
+
 ** Linux Users
 
 Install AVRDUDE using your package manager:
