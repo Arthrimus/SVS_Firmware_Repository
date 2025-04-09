@@ -42,4 +42,15 @@ The OSSC Classic supports 15 profiles (0-14). They can be loaded using IR Remote
 
 <p style="margin:41px;"></p>
 
+## OSSC Pro Profile IR Codes
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/IR%20Code%20Presets/OSSC%20Pro%20IR%20Codes.zip)
+
+### Info:
+The OSSC Pro supports 15 profiles (0-14) on it's internal memory and 100 profiles (0-99) with an SD Card. They can be loaded using IR Remote codes from the OSSC Pro Remote. This file contains preconfigured IR codes for profile slots 0-99 arranged in that order for input 0-99 on the SVS. These profile IR codes can be rearranged as needed by changing the name of the folders to match the input number of the input you want to assign that profile slot to. 
+
+***THE OSSC Pro must have firmware version 0.78 or higher installed for these IR codes to work***
+
+<p style="margin:41px;"></p>
+
 <br/>
