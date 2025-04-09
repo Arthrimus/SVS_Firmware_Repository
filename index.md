@@ -70,6 +70,18 @@ The example above is for Ubuntu and Debian based distributions._
 
 <p style="margin:50px;"></p>
 
+## Version 1.15 (2025-04-09)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.15/SVS_Firmware_1.15.7z)
+
+### Changelog:
+- Fixed bug with autodetection on 32+ input switch setups. ***This is a required update for the expansion kit and larger than 32 input switches.***
+- Fixed an order of operations bug with user defined IR code delay.
+- Fixed bug with seek backwards function that could under the right circumstances cause the input number to seek to an out of range number (greater than the total number of available inputs)
+- Improved seek behavior when no inputs are active. Seek will now jump to input 0 if no active inputs exist.
+
+<p style="margin:50px;"></p>
+
 ## Version 1.14 (2025-03-11)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.14/SVS_Firmware_1.14.7z)
