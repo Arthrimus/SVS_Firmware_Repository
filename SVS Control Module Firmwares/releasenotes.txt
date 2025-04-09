@@ -1,3 +1,11 @@
+Version: 1.15
+Date: 2025-04-09
+Description:
+- Fixed bug with autodetection on 32+ input switch setups. This is a required update for the expansion kit and larger than 32 input switches.
+- Fixed an order of operations bug with user defined IR code delay.
+- Fixed bug with seek backwards function that could under the right circumstances cause the input number to seek to an out of range number (greater than the total number of available inputs)
+- Improved seek behavior when no inputs are active. Seek will now jump to input 0 if no active inputs exist.
+
 Version: 1.14
 Date: 2025-03-11
 Description:
