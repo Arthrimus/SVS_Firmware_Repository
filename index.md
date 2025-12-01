@@ -23,20 +23,22 @@ title: SVS Control Module Firmware
 
 ### Windows Users
 
+**A new GUI based firmware update tool has been developed by [KnightNZ](https://github.com/KnightNZ) that replaces the old .bat file that was originally made for Windows users. This new GUI flasher is easier to use and is natively compatible with Windows 11** 
+
 1. Download the firmware update and unzip it somewhere on your computer.
 2. Plug the SVS Control Module into your computer using a USB Type C Cable.
-3. Run the batch file labeled "SVS Firmware Update Tool v1.0 Windows.bat"
-4. The SVS Firmware Update Tool will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you will need to manually select the correct COM port for your SVS.
-5. The SVS Firmware Update Tool will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you can manually type in the file name of the firmware version you wish to install as long as that file is also located in the root of your firmware update folder.
-6. Once the firmware update is complete you can press any key to close the firmware update tool.
+3. Run the .exe file labeled "SVS_Flash.exe"
+4. The SVS_Flash will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you will need to manually select the correct COM port for your SVS.
+5. The SVS_Flash will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you navigate to and select any other firmware file that you wish to install.
+6. Once the firmware update is complete you can press the ok button to close the firmware update tool.
 
-_If you are on Windows 11 and the firmware update tool does not detect your SVS you may need to install "wmic" by opening your start menu, searching for "optional features" select "View Features" search for "wmic" and install it._
+**_If you are still running Windows 10 you can also use SVS_Flash, but the original "SVS Firmware Update Tool v1.0 Windows.bat" file is still included if for whatever reason you would rather use that. The batch file no longer works on Windows 11 with the full deprecation of wmic so SVS_Flash is the only option to update on Windows 11._**
 
 <p style="margin:50px;"></p>
 
 ### Unix Users
 
- Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Unix based systems such as Linux and MacOS.
+ **Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Unix based systems such as Linux and MacOS.**
 
 #### Linux Users
 
