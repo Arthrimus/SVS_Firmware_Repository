@@ -51,7 +51,7 @@ function Get-SVSComPort
 	
 	if (-not $comPort)
 	{
-		[System.Windows.Forms.MessageBox]::Show("No SVS Control Module Detected. Please check your USB connection.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK)
+		$null = [System.Windows.Forms.MessageBox]::Show("No SVS Control Module Detected. Please check your USB connection.", "Error", [System.Windows.Forms.MessageBoxButtons]::OK)
 		Exit 1 # No SVS found - no point continuing.
 	}
 	
@@ -94,13 +94,25 @@ function Get-SVSComPort
 	$button.Top = 80
 	$button.Left = 100
 	$button.Add_Click({ $form.Close() })
+    $button.DialogResult = [System.Windows.Forms.DialogResult]::OK
 	
 	$form.Controls.Add($label)
 	$form.Controls.Add($textbox)
 	$form.Controls.Add($button)
-	$form.ShowDialog()
+    $form.AcceptButton = $button
 	
-	return $textbox.Text
+    $Result = $form.ShowDialog()
+
+    # Read value only if OK was pressed
+    if ($result -eq [System.Windows.Forms.DialogResult]::OK) {
+        $TextOutput = $textbox.Text
+    } else {
+        $TextOutput = $null
+    }
+
+    $form.Dispose()
+
+    return $TextOutput
 }
 
 function Get-FirmwareFile
@@ -114,7 +126,7 @@ function Get-FirmwareFile
 	
 	if ($firmwareFiles.Count -eq 0)
 	{
-		[System.Windows.Forms.MessageBox]::Show("No SVS firmware file found. Please download and place it in the folder.", "Error")
+		$Null = [System.Windows.Forms.MessageBox]::Show("No SVS firmware file found. Please download and place it in the folder.", "Error")
 		exit
 	}
 	
