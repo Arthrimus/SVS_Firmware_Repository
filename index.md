@@ -27,10 +27,7 @@ title: SVS Control Module Firmware
 
 *Based on the foundation created by [KnightNZ](https://github.com/KnightNZ) in the SVS_Flash program I have expanded it into a more comprehensive firmware update and management utility. The SVS Management Utility allows you to connect to your SVS, check current firmware version, install new firmware updates, and manually control the SVS. In future releases the SVS Management Utility will also allow you to configure advanced settings on the SVS in bulk using your computer instead of manually toggling those settings with your SVS IR remote.*
 
-<p align="center">
-  <img src="https://github.com/Arthrimus/SVS_Firmware_Repository/blob/main/Images/SVS_Management_Utility.png" />
-</p>
-
+  ![](./images/SVS_Management_Utility.png)
 
 **SVS Management Utility Instructions**
 
