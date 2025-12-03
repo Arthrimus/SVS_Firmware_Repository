@@ -23,16 +23,33 @@ title: SVS Control Module Firmware
 
 ### Windows Users
 
-**A new GUI based firmware update tool has been developed by [KnightNZ](https://github.com/KnightNZ) that replaces the old .bat file that was originally made for Windows users. This new GUI flasher is easier to use and is natively compatible with Windows 11** 
+**SVS Management Utility**
 
-1. Download the firmware update and unzip it somewhere on your computer.
-2. Plug the SVS Control Module into your computer using a USB Type C Cable.
-3. Run the .exe file labeled "SVS_Flash.exe"
-4. The SVS_Flash will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you will need to manually select the correct COM port for your SVS.
-5. The SVS_Flash will search for the latest firmware update file in the root of the firmware update folder. If the firmware update file it selects is different than the one you want to install then you navigate to and select any other firmware file that you wish to install.
-6. Once the firmware update is complete you can press the ok button to close the firmware update tool.
+*Based on the foundation created by [KnightNZ](https://github.com/KnightNZ) in the SVS_Flash program I have expanded it into a more comprehensive firmware update and management utility. The SVS Management Utility allows you to connect to your SVS, check current firmware version, install new firmware updates, and manually control the SVS. In future releases the SVS Management Utility will also allow you to configure advanced settings on the SVS in bulk using your computer instead of manually toggling those settings with your SVS IR remote.*
 
-**_If you are still running Windows 10 you can also use SVS_Flash, but the original "SVS Firmware Update Tool v1.0 Windows.bat" file is still included if for whatever reason you would rather use that. The batch file no longer works on Windows 11 with the full deprecation of wmic so SVS_Flash is the only option to update on Windows 11._**
+<p align="center">
+  <img src="https://github.com/Arthrimus/SVS_Firmware_Repository/blob/main/Images/SVS_Management_Utility.png" />
+</p>
+
+
+**SVS Management Utility Instructions**
+
+1. Download the latest Firmware Update file and unzip it somewhere on your computer.
+2. Run the .exe file labeled "SVS Management Utility v1.0.exe" *Windows will warn you that the publisher is unknown, just click "More Info" and then click "Run Anyway"*
+3. The SVS Management Utility will search the firmware update folder and find the latest firmware file. If it doesn't find a firmware file the "Firmware Update File" text box will display "Local Firmware File Not Found" You can use the "Browse" button to look for a firmware file in a different folder on your PC.
+4. Click the "Connect SVS" Button. The SVS Management Utility will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you can click "No" and you will can manually enter the correct COM port for your SVS.
+5. Once the SVS Management Utility connects to your SVS you will see the current firmware version that is installed on your SVS, the total number of inputs connected to your SVS, and the current active input of your SVS.
+6. To update your firmware, simply click the "Firmware Update" button and the SVS Management Utility will flash the new firmware file and alert you when the flash is complete. It will update the current firmware version to reflect the newly installed firmware on your SVS.
+
+In addition to firmware updates you can also use the SVS Management Utility to control your SVS. 
+
+* **Next Input, Previous Input:** These buttons allow you to manually cycle the input selection up or down by one input on your SVS. *Requires minimum SVS Firmware Version 1.12*
+* **Change Input:** This button allows you to manually change to the input number specified in the "Enter Input Number" text box. *Requires minimum SVS Firmware Version 1.12*
+* **Seek Next, Seek Previous:** These buttons allow you to manually seek to the next or previous active input if you have multiple video sources active at the same time. This function skips all inactive inputs. *Requires minimum SVS Firmware Version 1.14*
+* **Attract Mode:** This checkbox allows you to turn "Attract Mode" on or off. *Requires minimum SVS Firmware Version 1.14*
+* **Advanced Configuration:** This set of features is still under development, but will allow the user to make bulk changes to settings such as which inputs should activate the RGB to YPbPr and YPbPr to RGB Transcoder modules. More info to come.
+
+**_If you are still running Windows 10 you can also use the SVS Management Utility, but the original "SVS Firmware Update Tool v1.0 Windows.bat" file is still included if for whatever reason you would rather use that. The batch file no longer works on Windows 11 with the full deprecation of wmic so the SVS Management Utility is the only option to update on Windows 11._**
 
 <p style="margin:50px;"></p>
 
