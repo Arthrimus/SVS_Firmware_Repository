@@ -86,6 +86,20 @@ The example above is for Ubuntu and Debian based distributions._
 
 <p style="margin:50px;"></p>
 
+## Version 1.16 (2025-12-08)
+
+### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.16/SVS_Firmware_1.16.7z)
+
+### Changelog:
+- Fixed sync detection clock pulse width bug to improve reliability when reading sync data from sync shift register.
+- Added a new Serial command system for reading and writing to the EEPROM so the SVS Management Utility can be used to modify settings in bulk. Example: Bulk editing of IR blaster codes.
+- Added Serial commands for controlling the upcoming YPbPr to RGB Transcoder Module.
+- Added extra functions to the peripheral communication system for future modules currently in development.
+- Reverted SD Card IR code loading process back to pre 1.13 version. That change wasn't particularly useful and consumed a lot of precious memory resources that were needed for the new features.
+- Includes the SVS Management Utility V1.2 for Windows. V1.2 includes the new IR code editor, which allows bulk editing of IR blaster codes, includes presets codes for common scalers such as the Retro Tink 4k, 4kCE, 5x as well as the OSSC, and OSSC Pro.
+
+<p style="margin:50px;"></p>
+
 ## Version 1.15 (2025-04-09)
 
 ### [Download](https://github.com/Arthrimus/SVS_Firmware_Repository/releases/download/v1.15/SVS_Firmware_1.15.7z)
