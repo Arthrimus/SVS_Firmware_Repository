@@ -32,7 +32,7 @@ title: SVS Control Module Firmware
 
 **SVS Management Utility 1.4 adds auto update capability. It can automatically download the latest firmware as well as check for updates to the management utility.**
 
-**[Download Latest SVS Management Utility 1.4](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS_Management_Utility_V1.4.exe)**
+**[Download Latest SVS Management Utility 1.4](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS_Management_Utility_V1.4.zip)**
 
 ![](./Images/SVS_Management_Utility.png)
 
