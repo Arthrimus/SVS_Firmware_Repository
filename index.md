@@ -32,7 +32,7 @@ title: SVS Control Module Firmware
 
 **SVS Management Utility 1.4 adds auto update capability. It can automatically download the latest firmware as well as check for updates to the management utility scripts. This version of the management utility is no longer packaged as a .exe file due to antivirus false positives that were caused by the compilation tools I was previously using to compile the script as an exe. The utility is now distributed as a powershell script with a .bat file used to launch the script.**
 
-**[Download Latest SVS Management Utility 1.4](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS_Management_Utility_V1.4.zip)**
+**[Right Click and Save AS to Download Latest SVS Management Utility](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS%20Management%20Utility.bat)**
 
 ![](./Images/SVS_Management_Utility.png)
 
@@ -40,8 +40,8 @@ title: SVS Control Module Firmware
 **SVS Management Utility Instructions**
 
 1. Download the latest Firmware Update file and unzip it somewhere on your computer.
-2. Run the .bat file labeled "SVS Management Utility v1.4.bat" 
-3. The SVS Management Utility will search the firmware update folder and find the latest firmware file. If it doesn't find a firmware file the "Firmware Update File" text box will display "Local Firmware File Not Found" You can use the "Browse" button to look for a firmware file in a different folder on your PC.
+2. Run the .bat file labeled "SVS Management Utility.bat" 
+3. The SVS Management Utility will search the firmware update repository and find the latest firmware file and download it for you. If you want to install a different firmware version than the latest stable firmware you can use the "Browse" button to look for a different firmware file on your PC.
 4. Click the "Connect SVS" Button. The SVS Management Utility will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you can click "No" and you will can manually enter the correct COM port for your SVS.
 5. Once the SVS Management Utility connects to your SVS you will see the current firmware version that is installed on your SVS, the total number of inputs connected to your SVS, and the current active input of your SVS.
 6. To update your firmware, simply click the "Firmware Update" button and the SVS Management Utility will flash the new firmware file and alert you when the flash is complete. It will update the current firmware version to reflect the newly installed firmware on your SVS.
