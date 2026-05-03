@@ -75,16 +75,16 @@ function Download-ToolsRecursively {
 }
 
 function Get-SVSUtilityProcesses {
-    # Safely find running instances despite Windows 15-char process name limit
-    Get-Process -ErrorAction SilentlyContinue | Where-Object {
-        $match = $false
-        if ($_.ProcessName -match 'SVS.*Utility') { $match = $true }
-        if (-not $match) {
-            try {
-                if ($_.MainModule.FileName -like '*SVS_Management_Utility_*') { $match = $true }
-            } catch {} # Ignore access denied or system process errors
-        }
-        return $match
+    # Since .ps1 files run under powershell.exe, we query command-line arguments via CIM
+    $scriptNamePattern = "SVS_Management_Utility"
+    try {
+        Get-CimInstance -ClassName Win32_Process -Filter "Name='powershell.exe' OR Name='pwsh.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.CommandLine -match [regex]::Escape($scriptNamePattern) } |
+        ForEach-Object { Get-Process -Id $_.ProcessId -ErrorAction SilentlyContinue }
+    }
+    catch {
+        Write-Log "Could not query process command lines via CIM. Skipping precise process termination." "WARNING"
+        return @()
     }
 }
 
@@ -197,22 +197,22 @@ try {
     $utilApiUrl  = "https://api.github.com/repos/$script:Owner/$script:Repo/contents/$utilApiPath"
     
     $remoteScripts = Invoke-RestMethod -Uri $utilApiUrl -Headers $script:Headers -ErrorAction Stop
-    $utilityFiles = $remoteScripts | Where-Object { $_.type -eq 'file' -and $_.name -match '^SVS_Management_Utility_V.*\.exe$' }
+    $utilityFiles = $remoteScripts | Where-Object { $_.type -eq 'file' -and $_.name -match '^SVS_Management_Utility_V.*\.ps1$' }
 
     if ($utilityFiles) {
         $latestUtilityRemote = $null
         foreach ($item in $utilityFiles) {
-            $ver = ( [regex]::Match($item.name, '^SVS_Management_Utility_V(.+)\.exe$') ).Groups[1].Value
+            $ver = ( [regex]::Match($item.name, '^SVS_Management_Utility_V(.+)\.ps1$') ).Groups[1].Value
             if (-not $latestUtilityRemote) { $latestUtilityRemote = @{ Name = $item.name; Version = $ver; Url = $item.download_url } }
             elseif (Compare-Versions -v1 $ver -v2 $latestUtilityRemote.Version -gt 0) { $latestUtilityRemote = @{ Name = $item.name; Version = $ver; Url = $item.download_url } }
         }
 
         $localUtilityFiles = Get-ChildItem -Path $script:TargetDir -File -ErrorAction SilentlyContinue |
-                             Where-Object { $_.Name -match '^SVS_Management_Utility_V.*\.exe$' }
+                             Where-Object { $_.Name -match '^SVS_Management_Utility_V.*\.ps1$' }
         $latestUtilityLocal = $null
         if ($localUtilityFiles) {
             foreach ($lf in $localUtilityFiles) {
-                $ver = ( [regex]::Match($lf.Name, '^SVS_Management_Utility_V(.+)\.exe$') ).Groups[1].Value
+                $ver = ( [regex]::Match($lf.Name, '^SVS_Management_Utility_V(.+)\.ps1$') ).Groups[1].Value
                 if (-not $latestUtilityLocal) { $latestUtilityLocal = $ver }
                 elseif (Compare-Versions -v1 $ver -v2 $latestUtilityLocal -gt 0) { $latestUtilityLocal = $ver }
             }
@@ -245,7 +245,7 @@ try {
                 Invoke-WebRequest -Uri $latestUtilityRemote.Url -OutFile $utilOutFile -UseBasicParsing -ErrorAction Stop
                 Write-Log "Utility download complete. Saved to: $utilOutFile" "SUCCESS"
 
-                # Terminate old instances safely
+                # Terminate old instances safely (now handles .ps1 running under powershell.exe)
                 try {
                     $runningUtils = Get-SVSUtilityProcesses
                     if ($runningUtils) {
@@ -261,10 +261,10 @@ try {
                     Write-Log "Warning: Could not terminate running instances. $($_.Exception.Message)" "WARNING"
                 }
 
-                # Launch new version
+                # Launch new version via PowerShell with secure execution policy
                 try {
                     Write-Log "Launching newly downloaded SVS Management Utility..."
-                    Start-Process -FilePath $utilOutFile -ErrorAction Stop
+                    Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$utilOutFile`"" -ErrorAction Stop
                     Write-Log "SVS Management Utility launched successfully." "SUCCESS"
                 }
                 catch {
