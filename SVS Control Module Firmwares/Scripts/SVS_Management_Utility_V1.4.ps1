@@ -818,35 +818,6 @@ while (!($line.StartsWith("SVS_FW_"))) {
 
 function Get-FirmwareFile
 {   
-    [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-
-$currentDir   = Get-Location
-$targetFile   = "SVS_Update_Auto_Downloader.ps1"
-$targetPath   = Join-Path $currentDir $targetFile
-$rawUrl       = "https://raw.githubusercontent.com/Arthrimus/SVS_Firmware_Repository/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS_Update_Auto_Downloader.ps1"
-
-if (Test-Path -Path $targetPath -PathType Leaf) {
- #   Write-Host "[INFO] File already exists. Skipping download." -ForegroundColor Cyan
-} else {
-  #  Write-Host "[INFO] Downloading file from GitHub..." -ForegroundColor Cyan
-    try { Invoke-WebRequest -Uri $rawUrl -OutFile $targetPath -ErrorAction Stop } 
-    catch { #Write-Host "[ERROR] Download failed: $_" -ForegroundColor Red; exit 1 
-    }
-   # Write-Host "[SUCCESS] Download complete." -ForegroundColor Green
-}
-
-#Write-Host "[DEBUG] Launching child script... Window will stay open after execution." -ForegroundColor Yellow
-
-$childProc = Start-Process -FilePath "powershell.exe" `
-                           -ArgumentList '-ExecutionPolicy', 'Bypass', '-File', "`"$targetPath`"" `
-                           -WorkingDirectory $currentDir `
-                           -PassThru `
-                           -Wait
-
-#Write-Host "[DEBUG] Child process exited with code: $($childProc.ExitCode)" -ForegroundColor Cyan
-if ($childProc.ExitCode -ne 0) {
-#    Write-Host "[WARNING] Non-zero exit code detected. Check the child window for errors." -ForegroundColor Yellow
-}
 	$firmwareFiles = Get-ChildItem -Path "." -Filter "SVS_FW_*.hex" | Sort-Object LastWriteTime -Descending
 	
 	if ($firmwareFiles.Count -eq 0)

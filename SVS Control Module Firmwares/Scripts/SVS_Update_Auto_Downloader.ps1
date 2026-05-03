@@ -11,6 +11,14 @@ $ErrorActionPreference = 'Stop'
 $script:TargetDir = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
 $script:LogFile   = Join-Path $script:TargetDir "SVS_Firmware_Update.log"
 
+# GitHub Configuration (defined early for helper functions)
+$script:Owner = "Arthrimus"
+$script:Repo  = "SVS_Firmware_Repository"
+$script:Headers = @{
+    "Accept"     = "application/vnd.github.v3+json"
+    "User-Agent" = "PowerShell-Script/5.1"
+}
+
 # =============================================================================
 # ROBUST LOGGING FUNCTION
 # =============================================================================
@@ -65,26 +73,16 @@ function Download-ToolsRecursively {
         if ($item.type -eq 'file') {
             $dir = Split-Path $localTarget -Parent
             if (-not (Test-Path $dir)) { New-Item -ItemType Directory -Path $dir -Force | Out-Null }
-            Write-Log "Downloading dependency: $localTarget"
+            
+            # Always remove existing file to guarantee replacement when triggered
+            if (Test-Path $localTarget) { Remove-Item $localTarget -Force -ErrorAction SilentlyContinue }
+            
+            Write-Log "Updating dependency: $localTarget"
             Invoke-WebRequest -Uri $item.download_url -OutFile $localTarget -UseBasicParsing -ErrorAction Stop
         }
         elseif ($item.type -eq 'dir') {
             Download-ToolsRecursively -GitHubPath "$GitHubPath/$($item.name)" -LocalPath $localTarget
         }
-    }
-}
-
-function Get-SVSUtilityProcesses {
-    # Since .ps1 files run under powershell.exe, we query command-line arguments via CIM
-    $scriptNamePattern = "SVS_Management_Utility"
-    try {
-        Get-CimInstance -ClassName Win32_Process -Filter "Name='powershell.exe' OR Name='pwsh.exe'" -ErrorAction SilentlyContinue |
-        Where-Object { $_.CommandLine -match [regex]::Escape($scriptNamePattern) } |
-        ForEach-Object { Get-Process -Id $_.ProcessId -ErrorAction SilentlyContinue }
-    }
-    catch {
-        Write-Log "Could not query process command lines via CIM. Skipping precise process termination." "WARNING"
-        return @()
     }
 }
 
@@ -96,14 +94,6 @@ try {
     Write-Log "PowerShell Version : $($PSVersionTable.PSVersion.ToString())"
     Write-Log "Working Directory  : $script:TargetDir"
     Write-Log "Log File Path      : $script:LogFile"
-
-    # GitHub Configuration
-    $script:Owner = "Arthrimus"
-    $script:Repo  = "SVS_Firmware_Repository"
-    $script:Headers = @{
-        "Accept"     = "application/vnd.github.v3+json"
-        "User-Agent" = "PowerShell-Script/5.1"
-    }
 
     # ==========================================
     # FIRMWARE UPDATE CHECK
@@ -167,18 +157,6 @@ try {
             }
 
             if ($userConfirmed) {
-                $avrdudeExe  = Join-Path $script:TargetDir "tools\avrdude\7.2\bin\avrdude.exe"
-                $avrdudeConf = Join-Path $script:TargetDir "tools\avrdude\7.2\etc\avrdude.conf"
-                $missingDeps = (-not (Test-Path $avrdudeExe)) -or (-not (Test-Path $avrdudeConf))
-
-                if ($missingDeps) {
-                    Write-Log "Missing avrdude dependencies. Downloading tools folder..."
-                    $toolsGitHubPath = "SVS%20Control%20Module%20Firmwares/Scripts/tools"
-                    $toolsLocalPath  = Join-Path $script:TargetDir "tools"
-                    Download-ToolsRecursively -GitHubPath $toolsGitHubPath -LocalPath $toolsLocalPath
-                    Write-Log "Dependencies downloaded successfully." "SUCCESS"
-                } else { Write-Log "Avrdude dependencies already present. Skipping download." }
-
                 $outFile = Join-Path $script:TargetDir $latestRemote.Name
                 Write-Log "Downloading latest firmware: $($latestRemote.Name) (v$($latestRemote.Version))..."
                 Invoke-WebRequest -Uri $latestRemote.Url -OutFile $outFile -UseBasicParsing -ErrorAction Stop
@@ -245,37 +223,38 @@ try {
                 Invoke-WebRequest -Uri $latestUtilityRemote.Url -OutFile $utilOutFile -UseBasicParsing -ErrorAction Stop
                 Write-Log "Utility download complete. Saved to: $utilOutFile" "SUCCESS"
 
-                # Terminate old instances safely (now handles .ps1 running under powershell.exe)
-                try {
-                    $runningUtils = Get-SVSUtilityProcesses
-                    if ($runningUtils) {
-                        Write-Log "Found $($runningUtils.Count) running instance(s) of SVS Management Utility. Terminating..."
-                        $runningUtils | Stop-Process -Force -ErrorAction SilentlyContinue
-                        Start-Sleep -Seconds 2 # Allow OS to release file locks
-                        Write-Log "Successfully terminated running instances."
-                    } else {
-                        Write-Log "No running instances of SVS Management Utility detected."
-                    }
-                }
-                catch {
-                    Write-Log "Warning: Could not terminate running instances. $($_.Exception.Message)" "WARNING"
-                }
-
-                # Launch new version via PowerShell with secure execution policy
-                try {
-                    Write-Log "Launching newly downloaded SVS Management Utility..."
-                    Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$utilOutFile`"" -ErrorAction Stop
-                    Write-Log "SVS Management Utility launched successfully." "SUCCESS"
-                }
-                catch {
-                    Write-Log "Failed to launch SVS Management Utility: $($_.Exception.Message)" "ERROR"
-                }
+                # Dependencies are ONLY downloaded/updated if the user confirmed the utility update
+                Write-Log "User confirmed utility update. Downloading/refreshing dependencies..."
+                $toolsGitHubPath = "SVS%20Control%20Module%20Firmwares/Scripts/tools"
+                $toolsLocalPath  = Join-Path $script:TargetDir "tools"
+                Download-ToolsRecursively -GitHubPath $toolsGitHubPath -LocalPath $toolsLocalPath
+                Write-Log "Dependencies updated successfully." "SUCCESS"
             }
-            else { Write-Log "Utility update skipped by user." }
+            else { Write-Log "Utility update skipped by user. Dependencies left unchanged." }
         }
         else { Write-Log "Latest SVS Management Utility (v$($latestUtilityRemote.Version)) is already installed. No update needed." "INFO" }
     }
     else { Write-Log "No SVS Management Utility files found in the repository." "WARNING" }
+
+    # ==========================================
+    # LAUNCH UTILITY (Runs regardless of dialog choices)
+    # ==========================================
+    Write-Log "Script execution complete. Launching SVS Management Utility..."
+    $localUtils = Get-ChildItem -Path $script:TargetDir -Filter "SVS_Management_Utility_V*.ps1" -File -ErrorAction SilentlyContinue
+    if ($localUtils) {
+        $latestUtil = $localUtils | Sort-Object {
+            $match = [regex]::Match($_.Name, 'V(\d+\.\d+)')
+            # PowerShell 5.1 compatible version sorting
+            if ($match.Success) { [version]$match.Groups[1].Value } else { [version]"0.0.0" }
+        } -Descending | Select-Object -First 1
+
+        Write-Log "Launching: $($latestUtil.Name)"
+        Start-Process -FilePath "powershell.exe" -ArgumentList "-NoProfile -ExecutionPolicy Bypass -File `"$($latestUtil.FullName)`""
+        Write-Log "SVS Management Utility launched successfully." "SUCCESS"
+    }
+    else {
+        Write-Log "No SVS Management Utility found in target directory to launch." "WARNING"
+    }
 
 }
 catch {
