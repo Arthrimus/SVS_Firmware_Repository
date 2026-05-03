@@ -218,6 +218,14 @@ try {
             }
 
             if ($utilConfirmed) {
+                # Clean up old utility scripts to prevent version conflicts
+                $oldUtils = Get-ChildItem -Path $script:TargetDir -Filter "SVS_Management_Utility_V*.ps1" -File -ErrorAction SilentlyContinue
+                if ($oldUtils) {
+                    Write-Log "Removing $($oldUtils.Count) existing SVS Management Utility script(s)..."
+                    $oldUtils | Remove-Item -Force -ErrorAction SilentlyContinue
+                    Write-Log "Old utility scripts removed successfully." "SUCCESS"
+                }
+
                 $utilOutFile = Join-Path $script:TargetDir $latestUtilityRemote.Name
                 Write-Log "Downloading SVS Management Utility: $($latestUtilityRemote.Name) (v$($latestUtilityRemote.Version))..."
                 Invoke-WebRequest -Uri $latestUtilityRemote.Url -OutFile $utilOutFile -UseBasicParsing -ErrorAction Stop
@@ -230,7 +238,7 @@ try {
                 Download-ToolsRecursively -GitHubPath $toolsGitHubPath -LocalPath $toolsLocalPath
                 Write-Log "Dependencies updated successfully." "SUCCESS"
             }
-            else { Write-Log "Utility update skipped by user. Dependencies left unchanged." }
+            else { Write-Log "Utility update skipped by user. Dependencies and old scripts left unchanged." }
         }
         else { Write-Log "Latest SVS Management Utility (v$($latestUtilityRemote.Version)) is already installed. No update needed." "INFO" }
     }
