@@ -81,7 +81,7 @@ function Get-SVSUtilityProcesses {
         if ($_.ProcessName -match 'SVS.*Utility') { $match = $true }
         if (-not $match) {
             try {
-                if ($_.MainModule.FileName -like '*SVS Management Utility*') { $match = $true }
+                if ($_.MainModule.FileName -like '*SVS_Management_Utility_*') { $match = $true }
             } catch {} # Ignore access denied or system process errors
         }
         return $match
@@ -197,22 +197,22 @@ try {
     $utilApiUrl  = "https://api.github.com/repos/$script:Owner/$script:Repo/contents/$utilApiPath"
     
     $remoteScripts = Invoke-RestMethod -Uri $utilApiUrl -Headers $script:Headers -ErrorAction Stop
-    $utilityFiles = $remoteScripts | Where-Object { $_.type -eq 'file' -and $_.name -match '^SVS Management Utility V.*\.exe$' }
+    $utilityFiles = $remoteScripts | Where-Object { $_.type -eq 'file' -and $_.name -match '^SVS_Management_Utility_V.*\.exe$' }
 
     if ($utilityFiles) {
         $latestUtilityRemote = $null
         foreach ($item in $utilityFiles) {
-            $ver = ( [regex]::Match($item.name, '^SVS Management Utility V(.+)\.exe$') ).Groups[1].Value
+            $ver = ( [regex]::Match($item.name, '^SVS_Management_Utility_V(.+)\.exe$') ).Groups[1].Value
             if (-not $latestUtilityRemote) { $latestUtilityRemote = @{ Name = $item.name; Version = $ver; Url = $item.download_url } }
             elseif (Compare-Versions -v1 $ver -v2 $latestUtilityRemote.Version -gt 0) { $latestUtilityRemote = @{ Name = $item.name; Version = $ver; Url = $item.download_url } }
         }
 
         $localUtilityFiles = Get-ChildItem -Path $script:TargetDir -File -ErrorAction SilentlyContinue |
-                             Where-Object { $_.Name -match '^SVS Management Utility V.*\.exe$' }
+                             Where-Object { $_.Name -match '^SVS_Management_Utility_V.*\.exe$' }
         $latestUtilityLocal = $null
         if ($localUtilityFiles) {
             foreach ($lf in $localUtilityFiles) {
-                $ver = ( [regex]::Match($lf.Name, '^SVS Management Utility V(.+)\.exe$') ).Groups[1].Value
+                $ver = ( [regex]::Match($lf.Name, '^SVS_Management_Utility_V(.+)\.exe$') ).Groups[1].Value
                 if (-not $latestUtilityLocal) { $latestUtilityLocal = $ver }
                 elseif (Compare-Versions -v1 $ver -v2 $latestUtilityLocal -gt 0) { $latestUtilityLocal = $ver }
             }
