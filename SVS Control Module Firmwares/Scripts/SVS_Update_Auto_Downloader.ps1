@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 
 # Resolve target directory (script location or current working directory)
 $script:TargetDir = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
-$script:LogFile   = Join-Path $script:TargetDir "SVS_Firmware_Update.log"
+$script:LogFile   = Join-Path $script:TargetDir "SVS_Update_Auto_Downloader.log"
 
 # GitHub Configuration (defined early for helper functions)
 $script:Owner = "Arthrimus"
