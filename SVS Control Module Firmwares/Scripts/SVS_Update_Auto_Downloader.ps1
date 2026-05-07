@@ -9,7 +9,7 @@ $ErrorActionPreference = 'Stop'
 
 # Resolve target directory (script location or current working directory)
 $script:TargetDir = if ($PSScriptRoot) { $PSScriptRoot } else { (Get-Location).Path }
-$script:LogFile   = Join-Path $script:TargetDir "SVS_Update_Auto_Downloader.log"
+$script:LogFile   = Join-Path $script:TargetDir "SVS_Firmware_Update.log"
 
 # GitHub Configuration (defined early for helper functions)
 $script:Owner = "Arthrimus"
@@ -54,9 +54,13 @@ function Get-FirmwareVersion {
 function Compare-Versions {
     param([string]$v1, [string]$v2)
     try {
-        return [version]$v1.CompareTo([version]$v2)
+        # Proper .NET Version comparison syntax for PowerShell 5.1
+        $ver1 = [version]$v1
+        $ver2 = [version]$v2
+        return $ver1.CompareTo($ver2)
     }
     catch {
+        # Fallback to lexicographical comparison if .NET Version parsing fails
         return [string]::Compare($v1, $v2, [System.StringComparison]::OrdinalIgnoreCase)
     }
 }
@@ -136,8 +140,17 @@ try {
         }
 
         $isFirmwareNewer = $false
-        if (-not $latestLocal) { $isFirmwareNewer = $true }
-        elseif (Compare-Versions -v1 $latestRemote.Version -v2 $latestLocal -gt 0) { $isFirmwareNewer = $true }
+        if (-not $latestLocal) { 
+            $isFirmwareNewer = $true 
+            Write-Log "No local firmware found. Prompting for download."
+        }
+        elseif ((Compare-Versions -v1 $latestRemote.Version -v2 $latestLocal) -gt 0) { 
+            $isFirmwareNewer = $true 
+            Write-Log "Remote firmware (v$($latestRemote.Version)) is newer than local (v$latestLocal)."
+        }
+        else { 
+            Write-Log "Local firmware (v$latestLocal) is equal to or newer than remote (v$($latestRemote.Version)). Skipping." "INFO" 
+        }
 
         if ($isFirmwareNewer) {
             $currentVerStr = if ($latestLocal) { "v$latestLocal" } else { "None" }
@@ -164,7 +177,6 @@ try {
             }
             else { Write-Log "Firmware update skipped by user." }
         }
-        else { Write-Log "Latest stable firmware (v$($latestRemote.Version)) is already installed. No update needed." "INFO" }
     }
 
     # ==========================================
@@ -197,8 +209,17 @@ try {
         }
 
         $isUtilityNewer = $false
-        if (-not $latestUtilityLocal) { $isUtilityNewer = $true }
-        elseif (Compare-Versions -v1 $latestUtilityRemote.Version -v2 $latestUtilityLocal -gt 0) { $isUtilityNewer = $true }
+        if (-not $latestUtilityLocal) { 
+            $isUtilityNewer = $true 
+            Write-Log "No local utility found. Prompting for download."
+        }
+        elseif ((Compare-Versions -v1 $latestUtilityRemote.Version -v2 $latestUtilityLocal) -gt 0) { 
+            $isUtilityNewer = $true 
+            Write-Log "Remote utility (v$($latestUtilityRemote.Version)) is newer than local (v$latestUtilityLocal)."
+        }
+        else { 
+            Write-Log "Local utility (v$latestUtilityLocal) is equal to or newer than remote (v$($latestUtilityRemote.Version)). Skipping." "INFO" 
+        }
 
         if ($isUtilityNewer) {
             $currentUtilVer = if ($latestUtilityLocal) { "v$latestUtilityLocal" } else { "None" }
@@ -240,7 +261,6 @@ try {
             }
             else { Write-Log "Utility update skipped by user. Dependencies and old scripts left unchanged." }
         }
-        else { Write-Log "Latest SVS Management Utility (v$($latestUtilityRemote.Version)) is already installed. No update needed." "INFO" }
     }
     else { Write-Log "No SVS Management Utility files found in the repository." "WARNING" }
 
@@ -252,7 +272,6 @@ try {
     if ($localUtils) {
         $latestUtil = $localUtils | Sort-Object {
             $match = [regex]::Match($_.Name, 'V(\d+\.\d+)')
-            # PowerShell 5.1 compatible version sorting
             if ($match.Success) { [version]$match.Groups[1].Value } else { [version]"0.0.0" }
         } -Descending | Select-Object -First 1
 
