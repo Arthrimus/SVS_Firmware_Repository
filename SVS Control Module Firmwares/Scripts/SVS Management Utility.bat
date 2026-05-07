@@ -1,29 +1,46 @@
 @echo off
 setlocal
 
-:: Change to the directory where this batch file is located
+:: Always operate in the directory where this batch file resides
 cd /d "%~dp0"
 
 set "SCRIPT_NAME=SVS_Update_Auto_Downloader.ps1"
-:: Note: %% is used to escape the % character in batch files
 set "DOWNLOAD_URL=https://raw.githubusercontent.com/Arthrimus/SVS_Firmware_Repository/refs/heads/main/SVS%%20Control%%20Module%%20Firmwares/Scripts/SVS_Update_Auto_Downloader.ps1"
 
-:: Check if the PowerShell script exists in the current directory
+:: === FILE EXISTS ===
+:: Runs silently with zero prompts, exactly as requested
 if exist "%SCRIPT_NAME%" (
-    echo [+] Found %SCRIPT_NAME% in the executing directory.
-) else (
-    echo [!] %SCRIPT_NAME% not found. Downloading from repository...
-    :: Download using curl.exe (built into Windows 10/11)
-    curl.exe -fsSL -o "%SCRIPT_NAME%" "%DOWNLOAD_URL%"
-    if %errorlevel% neq 0 (
-        echo [X] Download failed. Please check your internet connection or URL.
-        pause
-        exit /b 1
-    )
-    echo [+] Download complete.
+    powershell -ExecutionPolicy Bypass -File "%SCRIPT_NAME%"
+    exit /b
 )
 
-:: Set execution policy for this PowerShell session and run the script
-:: -ExecutionPolicy Bypass allows the script to run without modifying system-wide settings or requiring admin rights
-echo [+] Setting execution policy and running script...
+:: === FILE MISSING ===
+echo.
+echo =========================================================
+echo   SVS Management Utility - First Time Setup Detected
+echo =========================================================
+echo   The core management script is not installed in this directory.
+echo   Required dependencies must be downloaded to continue.
+echo.
+set /p "user_choice=Do you agree to download the required files? (Y/N): "
+
+:: Check user input (case-insensitive, first character only)
+if /i not "%user_choice:~0,1%"=="Y" (
+    echo [CANCELLED] Setup aborted by user.
+    exit /b
+)
+
+echo [DOWNLOAD] Fetching dependencies from repository...
+curl.exe -fsSL -o "%SCRIPT_NAME%" "%DOWNLOAD_URL%"
+
+:: Verify the file was actually created (avoids %errorlevel% parsing bug)
+if not exist "%SCRIPT_NAME%" (
+    echo.
+    echo [ERROR] Download failed. Please check your internet connection and try again.
+    pause
+    exit /b 1
+)
+
+echo [DOWNLOAD] Complete. Launching SVS Management Utility...
 powershell -ExecutionPolicy Bypass -File "%SCRIPT_NAME%"
+exit /b
