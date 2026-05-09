@@ -389,7 +389,7 @@ $Main.MaximumSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([S
 $Main.MinimumSize = (New-Object -TypeName System.Drawing.Size -ArgumentList @([System.Int32]637,[System.Int32]355))
 $Main.SizeGripStyle = [System.Windows.Forms.SizeGripStyle]::Hide
 $Main.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
-$Main.Text = [System.String]'SVS Management Utility V1.4'
+$Main.Text = [System.String]'SVS Management Utility V1.41'
 $Main.ResumeLayout($false)
 $Main.PerformLayout()
 Add-Member -InputObject $Main -Name firmware_update -Value $firmware_update -MemberType NoteProperty

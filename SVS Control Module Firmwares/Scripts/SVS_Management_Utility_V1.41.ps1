@@ -693,57 +693,82 @@ while (!($line.StartsWith("SVS_FW_"))) {
             while ($cleancheck.StartsWith("SVS")){
             $cleancheck = $port.ReadLine()
             }
+            $blank = $port.ReadLine() #clear serial buffer
              $itemnum = 0
-        for ($i = 0; $i -le $epad; $i++) {
-            [int]$epadbit = $i+670
-            $port.WriteLine("R$epadbit`r`n")
-            $line = $port.ReadLine()
-             $line = $line -replace '\D', ''
-             [int]$ebyte = $line
-             for ($j = 0; $j -le 7; $j++) {
-            $bitValue = ($ebyte -shr $j) -band 1
-            try {
-            if ($bitValue -eq 0){
-            $listnum = $itemnum + 1
-            $vgav3 = 0
-            }else{
-            }
-         }catch{}
-            $itemnum++
-             }
-        }
-        $itemnum = 0
-        for ($i = 0; $i -le $epad; $i++) {
-            [int]$epadbit = $i+630
-            $port.WriteLine("R$epadbit`r`n")
-            $line = $port.ReadLine()
-             $line = $line -replace '\D', ''
-             [int]$ebyte = $line
-             for ($j = 0; $j -le 7; $j++) {
-            $bitValue = ($ebyte -shr $j) -band 1
-            try {
-            if ($bitValue -eq 0){
-            $listnum = $itemnum + 1
-            $scartv3 = 0
-            }else{
-            }
-         }catch{}
-            $itemnum++
-             }
-        }
+             #  Write-Host $epad
+        # for ($i = 0; $i -le 30; $i++) {
+        #     [int]$epadbit = $i+670
+        #     $port.WriteLine("R$epadbit`r`n")
+        #     $line = $port.ReadLine()
+        #      $line = $line -replace '\D', ''
+        #      [int]$ebyte = $line
+        #      for ($j = 0; $j -le 7; $j++) {
+        #     $bitValue = ($ebyte -shr $j) -band 1
+        #     try {
+        #     if ($bitValue -eq 0){
+        #     $listnum = $itemnum + 1
+        #     $vgav3 = 0
+        #     }else{
+        #     }
+        #  }catch{}
+        #     $itemnum++
+        #      }
+        # }
+        # $itemnum = 0
+        # for ($i = 0; $i -le 30; $i++) {
+        #     [int]$epadbit = $i+630
+        #     $port.WriteLine("R$epadbit`r`n")
+        #     $line = $port.ReadLine()
+        #      $line = $line -replace '\D', ''
+        #      [int]$ebyte = $line
+        #      for ($j = 0; $j -le 7; $j++) {
+        #     $bitValue = ($ebyte -shr $j) -band 1
+        #     try {
+        #     if ($bitValue -eq 0){
+        #     $listnum = $itemnum + 1
+        #     $scartv3 = 0
+        #     }else{
+        #     }
+        #  }catch{}
+        #     $itemnum++
+        #      }
+        # }
         $blank = $port.ReadLine() #clear serial buffer
-        # Start-Sleep -Milliseconds 500
-        $port.WriteLine("R711`r`n")
-        $ytorstatus = $port.ReadLine()
-        $ytorstatus = $ytorstatus -replace '\D', ''
-        #  Write-Host " ytor $ytorstatus"
-
-        # Start-Sleep -Milliseconds 500
+        
+        #$Start-Sleep -Milliseconds 2000
         $port.WriteLine("R710`r`n")
         $rtoystatus = $port.ReadLine()
+        $port.WriteLine("R710`r`n")
+        Start-Sleep -Milliseconds 50
+        $rtoystatus = $port.ReadLine()
         $rtoystatus = $rtoystatus -replace '\D', ''
-        #  Write-Host "rtoy $rtoystatus"
+        
+        Start-Sleep -Milliseconds 50
+        
+        $blank = $port.ReadLine() #clear serial buffer\
+        $port.WriteLine("R711`r`n")
+        $ytorstatus = $port.ReadLine()
+        $port.WriteLine("R711`r`n")
+        Start-Sleep -Milliseconds 50
+        $ytorstatus = $port.ReadLine()
+        $ytorstatus = $ytorstatus -replace '\D', ''
 
+        $blank = $port.ReadLine() #clear serial buffer\
+        $port.WriteLine("R669`r`n")
+        $scartv3 = $port.ReadLine()
+        $port.WriteLine("R669`r`n")
+        Start-Sleep -Milliseconds 50
+        $scartv3 = $port.ReadLine()
+        $scartv3 = $scartv3 -replace '\D', ''
+
+        $blank = $port.ReadLine() #clear serial buffer\
+        $port.WriteLine("R709`r`n")
+        $vgav3 = $port.ReadLine()
+        $port.WriteLine("R709`r`n")
+        Start-Sleep -Milliseconds 50
+        $vgav3 = $port.ReadLine()
+        $vgav3 = $vgav3 -replace '\D', ''
+       
             $port.close()
             $line = $fwvnum.Text -replace '\D', ''
             $hostmsg = $fwvnum.Text
