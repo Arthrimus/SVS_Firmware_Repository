@@ -59,6 +59,16 @@ Starting with firmware version 1.12 the SVS supports serial commands to control 
 | `R"#"` | Read one byte from the EEPROM, where "#" is replaced with the number of the EEPROM address you are attempting to read. _Example: `R251` will return the current value of address 251 of the EEPROM_ |
 | `W"#1""#2"` | Write one byte to the EEPROM, where "#1" is replaced with the value of the byte you wish to write, and "#2" is replaced with the number of the EEPROM address you are attempting to write to. _Example: `W255001` will write the byte "255" to the EEPROM address "1". Numbers must be formatted with 3 digits. Smaller numbers must have leading zeros in order to be interpreted correctly. Example: 1 should be written as 001, 10 should be written as 010, etc._ |
 
+## Serial Commands (Minimum Firmware Version 1.20) 
+**These functions are for unreleased hardware. They will not be useful until the Digital and V3 Input modules are released. You can mess with them, but they won't do anything at this time.**
+
+|      **Command**     |                                               **Function**                                               |
+|:--------------------:|:---------------------------------------------------------------------------------------------------------|
+| `SVS_Digital_Parallel_ON` | Turn on parallel Digital mode for independent Digital and Analog input control |
+| `SVS_Digital_Parallel_OFF` | Turn off parallel Digital mode for sequential Digital and Analog input control |
+| `SVS_Select_Digital` | Changes the manual input selection mode to digital while in Digital Parallel mode |
+| `SVS_Select_Analog` | Changes the manual input selection mode to analog while in Digital Parallel mode |
+
 <p style="margin:20px;"></p>
 
 **_*Input numbers higher than the total number of available input modules will default to the highest available input number._**

@@ -760,6 +760,7 @@ while (!($line.StartsWith("SVS_FW_"))) {
         Start-Sleep -Milliseconds 50
         $scartv3 = $port.ReadLine()
         $scartv3 = $scartv3 -replace '\D', ''
+        Write-Host $scartv3
 
         $blank = $port.ReadLine() #clear serial buffer\
         $port.WriteLine("R709`r`n")
@@ -768,7 +769,8 @@ while (!($line.StartsWith("SVS_FW_"))) {
         Start-Sleep -Milliseconds 50
         $vgav3 = $port.ReadLine()
         $vgav3 = $vgav3 -replace '\D', ''
-       
+        Write-Host $vgav3
+
             $port.close()
             $line = $fwvnum.Text -replace '\D', ''
             $hostmsg = $fwvnum.Text
@@ -816,11 +818,11 @@ while (!($line.StartsWith("SVS_FW_"))) {
         
         if ($line -gt 116){
         $apributton.Enabled = $true
-        if ($scartv3 -eq 1){
-        $rtosbutton.Enabled = $true
-        $syncbbutton.Enabled = $true
-        }
         if ($vgav3 -eq 1){
+        $rtosbutton.Enabled = $true
+        $syncbbutton.Enabled = $false
+        }
+        if ($scartv3 -eq 1){
         $rtosbutton.Enabled = $true
         $syncbbutton.Enabled = $true
         }

@@ -1,3 +1,25 @@
+Version: 1.20
+Date: 2026-7-2
+Description:
+- Fixed auto switch deselect bug. Firmware 1.16 introduced a bug which prevented auto switching back to a previous active input when more than one input is active under specific conditions. 
+- Increased input deselect coast time from 2 seconds to 5 seconds. This helps prevent an input from deselecting during resolution change events where the sync signal may be interrupted for a period of time.
+- Complete rewrite of the serial parser. Completely eliminated the use of strings in exchange for fixed char buffers. Achieves safer memory management and crash resistance in the event of a serial buffer overflow.
+- Added HDMI parallel mode for HDMI modules. HDMI modules can change active input without affecting analog inputs. Dual simultaneous output through both HDMI and Analog now possible.
+- Added a user controllable toggle for HDMI parallel mode. HDMI modules can operate independently as a second input channel, or they can operate as normal input modules on the same channel as the analog inputs.
+- Added manual HDMI parallel control through remote and pushbutton. Allows user to switch between manual control for analog inputs or HDMI inputs on the fly.
+- Added user controllable toggle between HDMI inputs and Analog inputs to select which video channel is controlled by attract mode.
+- Added HDMI module identification to the boot process of the control module so the control module can automatically identify and assign HDMI inputs to the second video channel for parallel mode.
+- Added per input auto profile deprioritization option. This is ideal for users that have HDMI modded systems, where they are connecting both analog and digital inputs to the SVS simultaneously. This setting allows the user to select which input (analog or digital) is prioritized for auto profile loading when the console is powered on. This feature also applies to the IR blaster function.
+- Added control system for controlling sync on green conversion and sync bypass options on V3 SCART and V3 VGA Input Modules.
+- Added IR remote commands for controlling sync on green conversion and sync bypass options on V3 SCART and V3 VGA Input Modules. 
+- Added extra functions to the peripheral communication system for YPbPr to RGB and RGB to YPbPr transcoder modules to enable two way communication for advanced configuration.
+- Added a routine to the serial SVS_Change_Input_"#" command to correctly identify HDMI parallel mode and switch only the video channel that corresponds to the requested input number, leaving any active input on the other channel untouched.
+- Added Serial commands for all new toggleable features added in this firmware.
+- Added new IR codes for future remote support.
+- Optimized input auto deselection routine to save flash memory space and execute in fewer cycles.
+- Optimized many small functions throughout the firmware to save flash and memory resources. 
+- Adjusted IR remote receiver timing to reduce occasional errant double presses when a button on the IR remote is held for too long. (The SVS IR remote does not send a proper repeat flag when a button is held so repeat detection timing has to be manually tuned)
+
 Version: 1.20_BETA
 Date: 2026-5-9
 Description:
