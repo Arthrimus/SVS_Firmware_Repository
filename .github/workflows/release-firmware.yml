@@ -35,7 +35,7 @@ jobs:
           cp "SVS Control Module Firmwares/readme.txt" release/
           cp "SVS Control Module Firmwares/releasenotes.txt" release/
           cp "SVS Control Module Firmwares/Scripts/SVS Firmware Update Tool v1.0 Unix.sh" release/
-          cp "SVS Control Module Firmwares/Scripts/SVS_Management_Utility_V*.ps1" release/
+          cp "SVS Control Module Firmwares/Scripts/SVS_Management_Utility_V1.41.ps1" release/
           cp "SVS Control Module Firmwares/Scripts/SVS_Update_Auto_Downloader.ps1" release/
           cp "SVS Control Module Firmwares/Scripts/SVS Management Utility.bat" release/
           cp "SVS Control Module Firmwares/Scripts/README.md" release/
