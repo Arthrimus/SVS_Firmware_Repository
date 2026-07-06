@@ -21,6 +21,10 @@ title: SVS Control Module Firmware
 
 <p style="margin:20px;"></p>
 
+### Note
+
+Before starting the update process, disconnect any VGA cables connecting a VGA Output Module to a RetroTINK-4K. Otherwise, the update process will fail.
+
 ### Windows Users
 
 **SVS Management Utility**

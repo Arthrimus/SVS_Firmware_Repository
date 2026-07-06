@@ -1,5 +1,9 @@
 * Update Instructions
 
+** Note
+
+Before starting the update process, disconnect any VGA cables connecting a VGA Output Module to a RetroTINK-4K. Otherwise, the update process will fail.
+
 ** Windows Users
 
 Download the firmware update and unzip it somewhere on your computer.
