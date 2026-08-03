@@ -1,3 +1,11 @@
+Version: 1.21
+Date: 2026-8-3
+Description:
+- Fixed a bug with the YPbPr to RGB and RGB to YPbPr transcoder communication system that caused periodic corruption of the communication between the control module and the transcoders, preventing accurate input based enable/disabling of the transcoders.
+- Removed experimental IR codes that conflict with the PixelFX Morph IR remote.
+- Added the SVS Management Utility Mac arm64 beta application.
+
+
 Version: 1.20
 Date: 2026-7-2
 Description:

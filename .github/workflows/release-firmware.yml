@@ -38,11 +38,10 @@ jobs:
           cp "SVS Control Module Firmwares/Scripts/SVS_Management_Utility_V1.41.ps1" release/
           cp "SVS Control Module Firmwares/Scripts/SVS_Update_Auto_Downloader.ps1" release/
           cp "SVS Control Module Firmwares/Scripts/SVS Management Utility.bat" release/
-          cp "SVS Control Module Firmwares/Scripts/README.md" release/
-          cp "SVS Control Module Firmwares/Scripts/README.md" release/
-          cp "SVS Control Module Firmwares/Scripts/Icon.ico" release/
-          cp "SVS Control Module Firmwares/Scripts/Icon.png" release/          
+          cp "SVS Control Module Firmwares/Scripts/README.md" release/          
           cp -r "SVS Control Module Firmwares/Scripts/tools" release/
+          mkdir -p "release/osx-arm64"
+          unzip -q "SVS Control Module Firmwares/Apps/SVS-Management-Utility-Mac-arm64.zip" -d "release/osx-arm64"
           cd release/ && 7z a SVS_Firmware_${VERSION}.7z . && cd ..
 
       - name: Create GitHub Release
