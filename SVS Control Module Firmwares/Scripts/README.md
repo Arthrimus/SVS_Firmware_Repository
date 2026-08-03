@@ -27,13 +27,13 @@
 
 ##### In addition to firmware updates you can also use the SVS Management Utility to control your SVS.
 
-- Next Input, Previous Input: These buttons allow you to manually cycle the input selection up or down by one input on your SVS. ""Requires minimum SVS Firmware Version 1.12""
-- Change Input: This button allows you to manually change to the input number specified in the “Enter Input Number” text box. ""Requires minimum SVS Firmware Version 1.12""
-- Seek Next, Seek Previous: These buttons allow you to manually seek to the next or previous active input if you have multiple video sources active at the same time. This function skips all inactive inputs. ""Requires minimum SVS Firmware Version 1.14""
-- Attract Mode: This checkbox allows you to turn “Attract Mode” on or off. ""Requires minimum SVS Firmware Version 1.14""
-- RGB to YPbPr: Opens a menu that allows you to bulk enable or disable the RGB to YPbPr transcoder module for each input. ""Requires a RGB to YPbPr transcoder module""
-- YPbPr to RGB: Opens a menu that allows you to bulk enable or disable the YPbPr to RGB transcoder module for each input. ""Requires a YPbPr to RGB transcoder module""
-- RGBS to RGsB: Opens a menu that allows you to bulk enable or disable the RGBS to RGsB conversion for each input. ""Requires V3 SCART or V3 VGA Modules""
-- Sync Bypass:  Opens a menu that allows you to bulk enable or disable the Sync Bypass option for each input. ""Requires V3 SCART modules""
-- Auto Profile Priority: Opens a menu that allows you to bulk enable or disable the Auto Profile transmission over VGA or IR blaster for each input. ""Requires minimum SVS Firmware Version 1.20""
-- IR Code Editor:
+- **Next Input, Previous Input:** These buttons allow you to manually cycle the input selection up or down by one input on your SVS. ""Requires minimum SVS Firmware Version 1.12""
+- **Change Input:** This button allows you to manually change to the input number specified in the “Enter Input Number” text box. ""Requires minimum SVS Firmware Version 1.12""
+- **Seek Next, Seek Previous:** These buttons allow you to manually seek to the next or previous active input if you have multiple video sources active at the same time. This function skips all inactive inputs. ""Requires minimum SVS Firmware Version 1.14""
+- **Attract Mode:** This checkbox allows you to turn “Attract Mode” on or off. ""Requires minimum SVS Firmware Version 1.14""
+- **RGB to YPbPr:** Opens a menu that allows you to bulk enable or disable the RGB to YPbPr transcoder module for each input. ""Requires a RGB to YPbPr transcoder module""
+- **YPbPr to RGB:** Opens a menu that allows you to bulk enable or disable the YPbPr to RGB transcoder module for each input. ""Requires a YPbPr to RGB transcoder module""
+- **RGBS to RGsB:** Opens a menu that allows you to bulk enable or disable the RGBS to RGsB conversion for each input. ""Requires V3 SCART or V3 VGA Modules""
+- **Sync Bypass:**  Opens a menu that allows you to bulk enable or disable the Sync Bypass option for each input. ""Requires V3 SCART modules""
+- **Auto Profile Priority:** Opens a menu that allows you to bulk enable or disable the Auto Profile transmission over VGA or IR blaster for each input. ""Requires minimum SVS Firmware Version 1.20""
+- **IR Code Editor:** Opens a menu that allows you to bulk edit the IR codes that are saved to each input for the IR Blaster functionality of the SVS Control Module. There are also IR code presets for the Retro Tink 4k, Retro Tink 5x, OSSC and OSSC Pro. ""Requires minimum SVS Firmware Version 1.16""

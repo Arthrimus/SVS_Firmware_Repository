@@ -16,7 +16,6 @@ title: SVS Control Module Beta Firmware
 
 <p style="margin:20px;"></p>
 
-### Windows Users
 **SVS Management Utility**
 
 *Based on the foundation created by [KnightNZ](https://github.com/KnightNZ) in the SVS_Flash program I have expanded it into a more comprehensive firmware update and management utility. The SVS Management Utility allows you to connect to your SVS, check current firmware version, install new firmware updates, and manually control the SVS. In future releases the SVS Management Utility will also allow you to configure advanced settings on the SVS in bulk using your computer instead of manually toggling those settings with your SVS IR remote.*
@@ -30,28 +29,49 @@ title: SVS Control Module Beta Firmware
 
 **SVS Management Utility Instructions**
 
-1. Download the latest Firmware Update file and unzip it somewhere on your computer.
-2. Run the .bat file labeled "SVS Management Utility.bat" 
-3. The SVS Management Utility will search the firmware update repository and find the latest firmware file and download it for you. If you want to install a different firmware version than the latest stable firmware you can use the "Browse" button to look for a different firmware file on your PC.
-4. Click the "Connect SVS" Button. The SVS Management Utility will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you can click "No" and you will can manually enter the correct COM port for your SVS.
-5. Once the SVS Management Utility connects to your SVS you will see the current firmware version that is installed on your SVS, the total number of inputs connected to your SVS, and the current active input of your SVS.
-6. To update your firmware, simply click the "Firmware Update" button and the SVS Management Utility will flash the new firmware file and alert you when the flash is complete. It will update the current firmware version to reflect the newly installed firmware on your SVS.
+#### Windows Users
 
-In addition to firmware updates you can also use the SVS Management Utility to control your SVS. 
+- Download the latest Firmware Update file and unzip it somewhere on your computer.
+- Double click the .bat file labeled “SVS Management Utility.bat”
+- The SVS Management Utility will search the firmware update repository and find the latest firmware file and download it for you. If you want to install a different firmware version than the latest stable firmware you can use the “Browse” button to look for a different firmware file on your PC.
+- Click the “Connect SVS” Button. The SVS Management Utility will search for the correct COM port for updating your SVS. The SVS uses a CH340 serial chip, so the firmware update tool searches for any CH340 devices and selects the first one it finds. If you have multiple CH340 devices connected at once you can click “No” and you will can manually enter the correct COM port for your SVS.
+- Once the SVS Management Utility connects to your SVS you will see the current firmware version that is installed on your SVS, the total number of inputs connected to your SVS, and the current active input of your SVS.
+- To update your firmware, simply click the “Firmware Update” button and the SVS Management Utility will flash the new firmware file and alert you when the flash is complete. It will update the current firmware version to reflect the newly installed firmware on your SVS.
 
-* **Next Input, Previous Input:** These buttons allow you to manually cycle the input selection up or down by one input on your SVS. *Requires minimum SVS Firmware Version 1.12*
-* **Change Input:** This button allows you to manually change to the input number specified in the "Enter Input Number" text box. *Requires minimum SVS Firmware Version 1.12*
-* **Seek Next, Seek Previous:** These buttons allow you to manually seek to the next or previous active input if you have multiple video sources active at the same time. This function skips all inactive inputs. *Requires minimum SVS Firmware Version 1.14*
-* **Attract Mode:** This checkbox allows you to turn "Attract Mode" on or off. *Requires minimum SVS Firmware Version 1.14*
-* **Advanced Configuration:** This set of features is still under development, but will allow the user to make bulk changes to settings such as which inputs should activate the RGB to YPbPr and YPbPr to RGB Transcoder modules. More info to come.
+#### Mac Users (Beta)
 
-**_If you are still running Windows 10 you can also use the SVS Management Utility, but the original "SVS Firmware Update Tool v1.0 Windows.bat" file is still included if for whatever reason you would rather use that. The batch file no longer works on Windows 11 with the full deprecation of wmic so the SVS Management Utility is the only option to update on Windows 11._**
+- Download the latest Firmware Update file and unzip it somewhere on your computer.
+
+- Follow the instruction at https://brew.sh to install Brew.
+
+- Install AVRDUDE using Brew with the following terminal command:
+``brew install avrdude``
+
+- In the terminal, navigate to the directory where you unzipped the SVS Management Utility.app file and run these two commands:
+
+	``chmod +x "Svs Management Utility.app/Contents/MacOS/Svs.App"`` 
+	``xattr -cr "SVS Management Utility.app"``
+
+- You only need to run this command once when you download the latest app. After that you can launch the app by double clicking on it.
+
+##### In addition to firmware updates you can also use the SVS Management Utility to control your SVS.
+
+- **Next Input, Previous Input:** These buttons allow you to manually cycle the input selection up or down by one input on your SVS. ""Requires minimum SVS Firmware Version 1.12""
+- **Change Input:** This button allows you to manually change to the input number specified in the “Enter Input Number” text box. ""Requires minimum SVS Firmware Version 1.12""
+- **Seek Next, Seek Previous:** These buttons allow you to manually seek to the next or previous active input if you have multiple video sources active at the same time. This function skips all inactive inputs. ""Requires minimum SVS Firmware Version 1.14""
+- **Attract Mode:** This checkbox allows you to turn “Attract Mode” on or off. ""Requires minimum SVS Firmware Version 1.14""
+- **RGB to YPbPr:** Opens a menu that allows you to bulk enable or disable the RGB to YPbPr transcoder module for each input. ""Requires a RGB to YPbPr transcoder module""
+- **YPbPr to RGB:** Opens a menu that allows you to bulk enable or disable the YPbPr to RGB transcoder module for each input. ""Requires a YPbPr to RGB transcoder module""
+- **RGBS to RGsB:** Opens a menu that allows you to bulk enable or disable the RGBS to RGsB conversion for each input. ""Requires V3 SCART or V3 VGA Modules""
+- **Sync Bypass:**  Opens a menu that allows you to bulk enable or disable the Sync Bypass option for each input. ""Requires V3 SCART modules""
+- **Auto Profile Priority:** Opens a menu that allows you to bulk enable or disable the Auto Profile transmission over VGA or IR blaster for each input. ""Requires minimum SVS Firmware Version 1.20""
+- **IR Code Editor:** Opens a menu that allows you to bulk edit the IR codes that are saved to each input for the IR Blaster functionality of the SVS Control Module. There are also IR code presets for the Retro Tink 4k, Retro Tink 5x, OSSC and OSSC Pro. ""Requires minimum SVS Firmware Version 1.16""
 
 <p style="margin:50px;"></p>
 
 ### Unix Users
 
- Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Unix based systems such as Linux and MacOS.
+ Thanks to the fantastic work of [Thiaramus](https://github.com/thiaramus), the firmware update script has been ported to Linux.
 
 #### Linux Users
 
